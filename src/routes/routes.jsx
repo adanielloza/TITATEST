@@ -1,14 +1,17 @@
-// src/routes/routes.jsx
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import PrincipalRoute   from './PrincipalRoute';
 import ProtectedRoutes  from './ProtectedRoutes';
-import AdminRoute       from './AdminRoute';
+import AdminRoute       from '../features/dashboard/admin/routes/AdminRoute';
 import AuthRoute        from '../features/auth/components/AuthRoute';
 import Home             from '../features/home';
 import About            from '../features/about';
-import { Dashboard, AdminDashboard } from '../features/dashboard';
+
+import { UserDashboard as Dashboard } from '../features/dashboard/user/components';
+import { AdminDashboard }             from '../features/dashboard/admin/components';
+
+
 
 export default function AppRoutes() {
   return (

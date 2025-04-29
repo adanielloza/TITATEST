@@ -1,25 +1,45 @@
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { doc, getDoc }               from 'firebase/firestore';
-import { db }                         from '../../../services/firebase';
+// src/features/auth/services/authService.js
 
-export async function login(auth, email, password) {
-  try {
-    const userCred = await signInWithEmailAndPassword(auth, email, password);
-    const { user } = userCred;
-    const uid       = user.uid;
-
-    const userRef = doc(db, 'users', uid);
-    console.log('userRef', userRef);
-    const userDoc = await getDoc(userRef);
-    if (userDoc.exists()) {
+import { 
+    signInWithEmailAndPassword, 
+    signOut, 
+    getAuth 
+  } from 'firebase/auth';
+  import { doc, getDoc }   from 'firebase/firestore';
+  import { db }            from '../../../services/firebase';
+  
+  /**
+   * Sign in, then look up the user doc for name & role.
+   */
+  export async function login(auth, email, password) {
+    try {
+      const { user } = await signInWithEmailAndPassword(auth, email, password);
+      const uid       = user.uid;
+  
+      const userRef = doc(db, 'users', uid);
+      const userDoc = await getDoc(userRef);
+      if (!userDoc.exists()) {
+        return { error: true, errorMessage: 'No such document!' };
+      }
       const { name, role } = userDoc.data();
       return { user, name, role };
-    } else {
-      console.error('No such document!');
-      return { error: true, errorMessage: 'No such document!' };
+  
+    } catch (err) {
+      return { error: true, errorCode: err.code, errorMessage: err.message };
     }
-  } catch (error) {
-    const { code: errorCode, message: errorMessage } = error;
-    return { error: true, errorCode, errorMessage };
   }
-}
+  
+  /**
+   * Sign the current user out and clear their role.
+   */
+  export async function logout() {
+    const auth = getAuth();            // ← get the current auth instance
+    try {
+      await signOut(auth);            // ← now signOut is defined
+      localStorage.removeItem('role');
+    } catch (err) {
+      console.error('Logout error:', err);
+      throw err;
+    }
+  }
+  
