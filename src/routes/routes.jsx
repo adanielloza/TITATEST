@@ -1,18 +1,18 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import React from "react";
+import { Routes, Route } from "react-router-dom";
 
-import PrincipalRoute  from './PrincipalRoute';
-import ProtectedRoutes from './ProtectedRoutes';
+import PrincipalRoute from "./PrincipalRoute";
+import ProtectedRoutes from "./ProtectedRoutes";
 
-import AuthRoute       from '../features/auth/routes/AuthRoute';
-import { Login }       from '../features/auth';
+import AuthRoute from "../features/auth/routes/AuthRoute";
+import { Login } from "../features/auth";
 
-import AdminRoute      from '../features/dashboard/admin/routes/AdminRoute';
-import { UserDashboard as Dashboard } from '../features/dashboard/user/components';
-import { AdminDashboard }             from '../features/dashboard/admin/components';
+import AdminRoute from "../features/dashboard/admin/routes/AdminRoute";
+import { UserDashboard as Dashboard } from "../features/dashboard/user/components";
+import { AdminDashboard } from "../features/dashboard/admin/components";
 
-import Home            from '../features/home';
-import About           from '../features/about';
+import Home from "../features/home";
+import About from "../features/about";
 
 export default function AppRoutes() {
   return (
@@ -42,5 +42,5 @@ export default function AppRoutes() {
       {/* Fallback */}
       <Route path="*" element={<Home />} />
     </Routes>
-  )
+  );
 }

@@ -1,6 +1,5 @@
-// src/routes/PrincipalRoute.jsx
-import React from 'react';
-import { Outlet } from 'react-router-dom';
+import React from "react";
+import { Outlet } from "react-router-dom";
 
 export default function PrincipalRoute() {
   return <Outlet />;

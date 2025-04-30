@@ -1,8 +1,8 @@
 // src/features/dashboard/admin/components/AdminDashboard.jsx
 
-import React from 'react';
-import DashboardLayout from '../../shared/components/DashboardLayout';
-import SignOut from '../../../auth/components/SignOut';
+import React from "react";
+import DashboardLayout from "../../shared/layout/DashboardLayout";
+import SignOut from "../../../auth/components/SignOut";
 
 export default function AdminDashboard() {
   return (
