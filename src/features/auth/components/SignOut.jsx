@@ -1,8 +1,6 @@
-// src/features/auth/components/SignOut.jsx
-
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { logout }      from '../services/authService';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { logout } from "../services/authService";
 
 export default function SignOut() {
   const navigate = useNavigate();
@@ -10,9 +8,9 @@ export default function SignOut() {
   const handleSignOut = async () => {
     try {
       await logout();
-      navigate('/');    // back to home page
+      navigate("/");
     } catch (err) {
-      console.error('Sign-out error:', err);
+      console.error("Sign-out error:", err);
     }
   };
 
@@ -20,12 +18,12 @@ export default function SignOut() {
     <button
       onClick={handleSignOut}
       style={{
-        padding: '0.5rem 1rem',
-        background: '#e53e3e',
-        color: 'white',
-        border: 'none',
+        padding: "0.5rem 1rem",
+        background: "#e53e3e",
+        color: "white",
+        border: "none",
         borderRadius: 4,
-        cursor: 'pointer'
+        cursor: "pointer",
       }}
     >
       Sign Out
