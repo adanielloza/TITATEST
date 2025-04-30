@@ -1,40 +1,46 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import PrincipalRoute   from './PrincipalRoute';
-import ProtectedRoutes  from './ProtectedRoutes';
-import AdminRoute       from '../features/dashboard/admin/routes/AdminRoute';
-import AuthRoute        from '../features/auth/components/AuthRoute';
-import Home             from '../features/home';
-import About            from '../features/about';
+import PrincipalRoute  from './PrincipalRoute';
+import ProtectedRoutes from './ProtectedRoutes';
 
+import AuthRoute       from '../features/auth/routes/AuthRoute';
+import { Login }       from '../features/auth';
+
+import AdminRoute      from '../features/dashboard/admin/routes/AdminRoute';
 import { UserDashboard as Dashboard } from '../features/dashboard/user/components';
 import { AdminDashboard }             from '../features/dashboard/admin/components';
 
-
+import Home            from '../features/home';
+import About           from '../features/about';
 
 export default function AppRoutes() {
   return (
     <Routes>
       {/* Public pages */}
       <Route element={<PrincipalRoute />}>
-        <Route index     element={<Home />}  />
+        <Route index element={<Home />} />
         <Route path="about" element={<About />} />
       </Route>
 
-      {/* Auth flow now uses a wildcard */}
-      <Route path="auth/*" element={<AuthRoute />} />
+      {/* Auth flow (guard + nested login) */}
+      <Route path="auth/" element={<AuthRoute />}>
+        {/* GET  /auth → LoginContainer */}
+        <Route index element={<Login />} />
+      </Route>
 
       {/* Protected pages */}
       <Route element={<ProtectedRoutes />}>
-        <Route path="dashboard" element={<Dashboard />} />
-        <Route element={<AdminRoute />}>
-          <Route path="admin" element={<AdminDashboard />} />
+        <Route path="dashboard">
+          <Route index element={<Dashboard />} />
+          <Route element={<AdminRoute />}>
+            <Route path="admin" element={<AdminDashboard />} />
+          </Route>
         </Route>
       </Route>
 
       {/* Fallback */}
       <Route path="*" element={<Home />} />
     </Routes>
-  );
+  )
 }
