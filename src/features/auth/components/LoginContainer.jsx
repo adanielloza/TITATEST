@@ -1,6 +1,6 @@
 // src/features/auth/components/LoginContainer.jsx
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { auth } from '../../../services/firebase'
 import { login } from '../services/authService'
 import LoginForm from './LoginForm'
@@ -25,10 +25,20 @@ export default function LoginContainer() {
   }
 
   return (
-    // <-- make this panel stretch the full viewport height
     <div className="flex min-h-screen">
-      {/* Left: centered form */}
-      <div className="flex flex-1 flex-col justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
+      <div className="flex flex-1 flex-col justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24 relative">
+
+        {/* ← Back to home */}
+        <div className="absolute top-4 left-4">
+          <Link
+            to="/"
+            className="text-gray-700 hover:underline"
+          >
+            ← Back to Home
+          </Link>
+        </div>
+
+        {/* your form */}
         <LoginForm
           data={data}
           errorMsg={errorMsg}
@@ -37,7 +47,6 @@ export default function LoginContainer() {
         />
       </div>
 
-      {/* Right: image, also full height */}
       <div className="relative hidden w-0 flex-1 lg:block">
         <img
           alt=""

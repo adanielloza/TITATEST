@@ -12,17 +12,10 @@ import { UserDashboard as Dashboard } from '../features/dashboard/user/component
 import { AdminDashboard }             from '../features/dashboard/admin/components';
 
 import Home            from '../features/home';
-import About           from '../features/about';
 
 export default function AppRoutes() {
   return (
     <Routes>
-      {/* Public pages */}
-      <Route element={<PrincipalRoute />}>
-        <Route index element={<Home />} />
-        <Route path="about" element={<About />} />
-      </Route>
-
       {/* Auth flow (guard + nested login) */}
       <Route path="auth/" element={<AuthRoute />}>
         {/* GET  /auth → LoginContainer */}
