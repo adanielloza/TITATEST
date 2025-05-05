@@ -1,7 +1,7 @@
 import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
 
-export default function ProtectedRoutes({ children }) {
+export default function ProtectedRoutes() {
   const userData = localStorage.getItem("user");
-  return userData ? children : <Navigate to="/auth" replace />;
+  return userData ? <Outlet /> : <Navigate to="/auth" replace />;
 }

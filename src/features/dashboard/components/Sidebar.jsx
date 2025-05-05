@@ -2,7 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function Sidebar() {
-  const role = localStorage.getItem("role");
+  const userData = JSON.parse(localStorage.getItem("user") || "{}");
+  const role = userData.role;
 
   const commonLinks = [{ path: "/dashboard", label: "Inicio" }];
 

@@ -43,7 +43,7 @@ export async function login(email, password) {
 export async function logout() {
   try {
     await signOut(auth);
-    localStorage.removeItem("role");
+    localStorage.removeItem("user");
   } catch (err) {
     console.error("Logout error:", err);
     throw err;

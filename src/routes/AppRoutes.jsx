@@ -3,7 +3,6 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "../features/home/Home";
 import AuthRoutes from "./AuthRoutes";
 import DashboardRoutes from "./DashboardRoutes";
-import ProtectedRoutes from "./ProtectedRoutes";
 
 export default function AppRoutes() {
   return (

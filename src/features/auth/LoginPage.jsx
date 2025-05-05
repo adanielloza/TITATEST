@@ -18,9 +18,8 @@ export default function LoginPage() {
       return;
     }
 
-    const { user } = result;
-    const dashboardPath =
-      user.role === "admin" ? "/dashboard/admin" : "/dashboard";
+    const dashboardPath = "/dashboard";
+
     navigate(dashboardPath);
   };
 
