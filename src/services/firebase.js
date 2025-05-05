@@ -3,15 +3,14 @@ import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCb5vSvxMRZh91bhfg2IIpDkSZ0b2y05DY",
-  authDomain: "fir-fuvime.firebaseapp.com",
-  databaseURL: "https://fir-fuvime-default-rtdb.firebaseio.com",
-
-  projectId: "fir-fuvime",
-  storageBucket: "fir-fuvime.firebasestorage.app",
-  messagingSenderId: "263267213279",
-  appId: "1:263267213279:web:953d2b3236326f88ef6e6a",
-  measurementId: "G-KPT3SYE6NV",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  databaseURL: import.meta.env.VITE_FIREBASE_DATABASE_URL,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 };
 
 const app = initializeApp(firebaseConfig);
