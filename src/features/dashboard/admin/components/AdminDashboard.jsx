@@ -1,6 +1,0 @@
-import React from "react";
-import DashboardLayout from "../../shared/DashboardLayout";
-
-export default function AdminDashboard() {
-  return <DashboardLayout></DashboardLayout>;
-}

@@ -1,37 +1,14 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import Header from "./Header";
 
 export default function Home() {
+  useEffect(() => {
+    localStorage.removeItem("role");
+  }, []);
+
   return (
     <div className="min-h-screen bg-white">
-      <header className="shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex h-16 items-center justify-between">
-            <nav className="flex space-x-8">
-              <a href="#features" className="text-gray-700 hover:text-gray-900">
-                Features
-              </a>
-              <a
-                href="#testimonials"
-                className="text-gray-700 hover:text-gray-900"
-              >
-                Testimonials
-              </a>
-              <a href="#pricing" className="text-gray-700 hover:text-gray-900">
-                Pricing
-              </a>
-            </nav>
-            <div>
-              <Link
-                to="/auth"
-                className="text-gray-700 hover:text-gray-900 font-medium"
-              >
-                Sign in
-              </Link>
-            </div>
-          </div>
-        </div>
-      </header>
+      <Header />
       <main className="flex flex-col items-center text-center px-4 sm:px-6 lg:px-8 py-20">
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gray-900">
           Accounting{" "}
@@ -46,9 +23,9 @@ export default function Home() {
           opposite trade-off, and hope you don’t get audited.
         </p>
         <div className="mt-8">
-          <a
-            href="#watch-video"
+          <button
             className="inline-flex items-center rounded-md border border-gray-300 px-6 py-3 text-gray-700 hover:bg-gray-50"
+            onClick={() => alert("Reproducir video")}
           >
             <svg
               className="h-5 w-5 mr-2 text-gray-500"
@@ -58,7 +35,7 @@ export default function Home() {
               <path d="M6 4l12 6-12 6V4z" />
             </svg>
             Watch video
-          </a>
+          </button>
         </div>
       </main>
     </div>

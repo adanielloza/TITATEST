@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { auth } from "../../../services/firebase";
-import { login } from "../services/authService";
-import LoginForm from "./LoginForm";
+import { login } from "./services/authService";
+import LoginForm from "./components/LoginForm";
 
-export default function LoginContainer() {
+export default function LoginPage() {
   const [data, setData] = useState({ email: "", password: "" });
   const [errorMsg, setErrorMsg] = useState("");
   const navigate = useNavigate();
@@ -13,14 +12,20 @@ export default function LoginContainer() {
     e.preventDefault();
     setErrorMsg("");
 
-    const result = await login(auth, data.email, data.password);
+    const result = await login(data.email, data.password);
     if (result.error) {
       setErrorMsg(result.errorMessage || "Login failed");
       return;
     }
 
     localStorage.setItem("role", result.role);
-    navigate(result.role === "admin" ? "/dashboard/admin" : "/dashboard");
+    const dashboardPath =
+      result.role === "admin" ? "/dashboard/admin" : "/dashboard";
+    console.log("Role:", result.role); // Debugging line
+    console.log("Dashboard Path:", dashboardPath); // Debugging line
+    console.log("Data:", data); // Debugging line
+    console.log("Result:", result); // Debugging line
+    navigate(dashboardPath);
   };
 
   return (
@@ -42,7 +47,7 @@ export default function LoginContainer() {
       </div>
       <div className="relative hidden w-0 flex-1 lg:block">
         <img
-          alt=""
+          alt="Background"
           src="https://images.unsplash.com/photo-1496917756835-20cb06e75b4e"
           className="absolute inset-0 h-full w-full object-cover"
         />
