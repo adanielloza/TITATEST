@@ -18,13 +18,9 @@ export default function LoginPage() {
       return;
     }
 
-    localStorage.setItem("role", result.role);
+    const { user } = result;
     const dashboardPath =
-      result.role === "admin" ? "/dashboard/admin" : "/dashboard";
-    console.log("Role:", result.role); // Debugging line
-    console.log("Dashboard Path:", dashboardPath); // Debugging line
-    console.log("Data:", data); // Debugging line
-    console.log("Result:", result); // Debugging line
+      user.role === "admin" ? "/dashboard/admin" : "/dashboard";
     navigate(dashboardPath);
   };
 

@@ -16,12 +16,25 @@ export async function login(email, password) {
       return { error: true, errorMessage: "Usuario no encontrado." };
     }
 
-    const { name, role } = userDoc.data();
+    const userData = userDoc.data();
+    const { role, name, lastName } = userData;
+
     if (!["admin", "user"].includes(role)) {
       return { error: true, errorMessage: "Rol inválido." };
     }
 
-    return { user, name, role };
+    const fullUser = {
+      uid,
+      email: user.email,
+      name,
+      lastName,
+      role,
+    };
+
+    // Guardar todo en localStorage
+    localStorage.setItem("user", JSON.stringify(fullUser));
+
+    return { user: fullUser };
   } catch (err) {
     return { error: true, errorMessage: err.message };
   }

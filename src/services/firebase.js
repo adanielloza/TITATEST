@@ -3,12 +3,15 @@ import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyA35S9oxx1FxV4VvX9-voq2-py4PwUECYQ",
-  authDomain: "tita-d7bd8.firebaseapp.com",
-  projectId: "tita-d7bd8",
-  storageBucket: "tita-d7bd8.firebasestorage.app",
-  messagingSenderId: "1066591329316",
-  appId: "1:1066591329316:web:980c03f6f85700d1f5ccb1",
+  apiKey: "AIzaSyCb5vSvxMRZh91bhfg2IIpDkSZ0b2y05DY",
+  authDomain: "fir-fuvime.firebaseapp.com",
+  databaseURL: "https://fir-fuvime-default-rtdb.firebaseio.com",
+
+  projectId: "fir-fuvime",
+  storageBucket: "fir-fuvime.firebasestorage.app",
+  messagingSenderId: "263267213279",
+  appId: "1:263267213279:web:953d2b3236326f88ef6e6a",
+  measurementId: "G-KPT3SYE6NV",
 };
 
 const app = initializeApp(firebaseConfig);
