@@ -7,6 +7,7 @@ export default function LoginForm({ data, errorMsg, onChange, onSubmit }) {
       className="mx-auto w-full max-w-sm lg:w-96 space-y-6"
     >
       {errorMsg && <div className="text-sm text-red-600">{errorMsg}</div>}
+
       <div>
         <label
           htmlFor="email"
@@ -25,6 +26,7 @@ export default function LoginForm({ data, errorMsg, onChange, onSubmit }) {
           className="mt-2 block w-full rounded-md border-gray-300 px-3 py-1.5 focus:outline-indigo-600 sm:text-sm"
         />
       </div>
+
       <div>
         <label
           htmlFor="password"
@@ -43,14 +45,17 @@ export default function LoginForm({ data, errorMsg, onChange, onSubmit }) {
           className="mt-2 block w-full rounded-md border-gray-300 px-3 py-1.5 focus:outline-indigo-600 sm:text-sm"
         />
       </div>
+
       <div className="text-sm text-right">
-        <a
-          href="#"
+        <button
+          type="button"
           className="font-semibold text-indigo-600 hover:text-indigo-500"
+          onClick={() => alert("Implementar recuperación de contraseña")}
         >
           Forgot password?
-        </a>
+        </button>
       </div>
+
       <button
         type="submit"
         className="w-full rounded-md bg-indigo-600 px-3 py-1.5 text-white hover:bg-indigo-500 focus:outline-indigo-600 sm:text-sm font-semibold"

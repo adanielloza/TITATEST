@@ -1,4 +1,3 @@
-// features/auth/services/authService.js
 import { signInWithEmailAndPassword, signOut, getAuth } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../../services/firebase";
@@ -31,7 +30,6 @@ export async function login(email, password) {
       role,
     };
 
-    // Guardar todo en localStorage
     localStorage.setItem("user", JSON.stringify(fullUser));
 
     return { user: fullUser };

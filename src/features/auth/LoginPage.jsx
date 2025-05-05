@@ -2,25 +2,28 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "./services/authService";
 import LoginForm from "./components/LoginForm";
+import { useLoader } from "../../contexts/LoaderContext";
 
 export default function LoginPage() {
   const [data, setData] = useState({ email: "", password: "" });
   const [errorMsg, setErrorMsg] = useState("");
   const navigate = useNavigate();
+  const { showLoader, hideLoader } = useLoader();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrorMsg("");
+    showLoader();
 
-    const result = await login(data.email, data.password);
-    if (result.error) {
-      setErrorMsg(result.errorMessage || "Login failed");
+    const { error, errorMessage } = await login(data.email, data.password);
+
+    hideLoader();
+    if (error) {
+      setErrorMsg(errorMessage || "Login failed");
       return;
     }
 
-    const dashboardPath = "/dashboard";
-
-    navigate(dashboardPath);
+    navigate("/dashboard");
   };
 
   return (

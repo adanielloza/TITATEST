@@ -1,11 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Header from "./components/Header";
 
 export default function Home() {
-  useEffect(() => {
-    localStorage.removeItem("role");
-  }, []);
-
   return (
     <div className="min-h-screen bg-white">
       <Header />
