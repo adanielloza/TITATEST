@@ -1,6 +1,5 @@
 import React from "react";
-import Sidebar from "./components/Sidebar";
-import DashboardMain from "./components/DashboardMain";
+import { Sidebar, DashboardMain } from "./components";
 import { useSidebarLinks } from "./hooks/useSidebarLinks";
 import "./styles/DashboardLayout.css";
 
