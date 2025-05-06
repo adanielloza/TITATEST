@@ -1,7 +1,54 @@
 import React from "react";
 
 function AdminHome() {
-  return <div>AdminHome</div>;
+  return (
+    <div>
+      <span>HOLA</span>
+      <p>HOLA</p>
+      <p>HOLA</p>
+      <p>HOLA</p>
+      <p>HOLA</p>
+      <p>HOLA</p>
+      <p>HOLA</p>
+      <p>HOLA</p>
+      <p>HOLA</p>
+      <p>HOLA</p>
+      <p>HOLA</p>
+      <p>HOLA</p>
+      <p>HOLA</p>
+      <p>HOLA</p>
+      <p>HOLA</p>
+      <p>HOLA</p>
+      <p>HOLA</p>
+      <p>HOLA</p>
+      <p>HOLA</p>
+      <p>HOLA</p>
+      <p>HOLA</p>
+      <p>HOLA</p>
+      <span>HOLA</span>
+      <p>HOLA</p>
+      <p>HOLA</p>
+      <p>HOLA</p>
+      <p>HOLA</p>
+      <p>HOLA</p>
+      <p>HOLA</p>
+      <p>HOLA</p>
+      <p>HOLA</p>
+      <p>HOLA</p>
+      <p>HOLA</p>
+      <p>HOLA</p>
+      <p>HOLA</p>
+      <p>HOLA</p>
+      <p>HOLA</p>
+      <p>HOLA</p>
+      <p>HOLA</p>
+      <p>HOLA</p>
+      <p>HOLA</p>
+      <p>HOLA</p>
+      <p>HOLA</p>
+      <p>HOLA</p>
+    </div>
+  );
 }
 
 export default AdminHome;

@@ -1,14 +1,16 @@
 import React from "react";
 import Sidebar from "./components/Sidebar";
-import { Outlet } from "react-router-dom";
+import DashboardMain from "./components/DashboardMain";
+import { useSidebarLinks } from "./hooks/useSidebarLinks";
+import "./styles/DashboardLayout.css";
 
 export default function DashboardLayout() {
+  const links = useSidebarLinks();
+
   return (
-    <div className="flex min-h-screen">
-      <Sidebar />
-      <main className="flex-1 p-6 bg-gray-100">
-        <Outlet />
-      </main>
+    <div className="dashboard-layout">
+      <Sidebar links={links} />
+      <DashboardMain />
     </div>
   );
 }
