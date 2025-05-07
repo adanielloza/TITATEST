@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
-import SidebarHeader from "./SidebarHeader";
-import SidebarLink from "./SidebarLink";
+import { SidebarHeader, SidebarLink } from "./";
 import "../styles/Sidebar.css";
 
 export default function Sidebar({ links = [] }) {
@@ -15,7 +14,6 @@ export default function Sidebar({ links = [] }) {
           collapsed={collapsed}
           toggle={() => setCollapsed(!collapsed)}
         />
-
         <nav className="sidebar__nav">
           {links.map((link) => (
             <SidebarLink
