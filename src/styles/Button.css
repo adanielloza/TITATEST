@@ -1,0 +1,41 @@
+.button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  border: none;
+}
+
+/* Modificadores */
+.button--primary {
+  background-color: #0097e6;
+  color: white;
+}
+
+.button--primary:hover {
+  opacity: 0.9;
+}
+
+.button--secondary {
+  background-color: transparent;
+  border: 2px solid #0097e6;
+  color: #0097e6;
+}
+
+.button--secondary:hover {
+  background-color: rgba(0, 151, 230, 0.1);
+}
+
+/* Elemento */
+.button__icon {
+  width: 1.5rem; /* 20px */
+  height: 1.5rem;
+}
+
+.button--secondary .button__icon {
+  filter: invert(1);
+}

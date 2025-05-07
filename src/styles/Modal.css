@@ -1,0 +1,84 @@
+.modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+}
+
+.modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.modal__content {
+  position: relative;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  min-width: 500px;
+  max-width: 90%;
+  max-height: 90vh; /* límite de altura para pantallas pequeñas */
+  overflow: hidden; /* evita que el modal completo crezca */
+  z-index: 60;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  color: #000;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 640px) {
+  .modal__content {
+    min-width: unset;
+    width: 95%;
+    padding: 1rem;
+  }
+
+  .modal__close {
+    top: 0.25rem;
+    right: 0.5rem;
+    font-size: 1.25rem;
+  }
+}
+
+.modal__close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.75rem;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.modal__title {
+  margin-top: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.modal__subtitle {
+  margin-top: 0.25rem;
+  font-size: 1rem;
+  color: #555;
+}
+
+.modal__body {
+  margin-top: 1.5rem;
+  overflow-y: auto;
+  flex: 1 1 auto;
+}
+
+.modal__footer {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
