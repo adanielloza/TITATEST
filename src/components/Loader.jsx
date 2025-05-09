@@ -1,16 +1,17 @@
 import React from "react";
+import "../styles/Loader.css";
 
 export default function Loader() {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/70 backdrop-blur-sm">
+    <div className="loader__wrapper">
       <svg
-        className="animate-spin h-12 w-12 text-indigo-600"
+        className="loader__spinner"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
       >
         <circle
-          className="opacity-25"
+          className="loader__spinner-circle"
           cx="12"
           cy="12"
           r="10"
@@ -18,7 +19,7 @@ export default function Loader() {
           strokeWidth="4"
         />
         <path
-          className="opacity-75"
+          className="loader__spinner-path"
           fill="currentColor"
           d="M4 12a8 8 0 018-8v4l3-3-3-3v4a8 8 0 00-8 8z"
         />
