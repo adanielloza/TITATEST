@@ -22,8 +22,8 @@
   border-radius: 12px;
   min-width: 500px;
   max-width: 90%;
-  max-height: 90vh; /* límite de altura para pantallas pequeñas */
-  overflow: hidden; /* evita que el modal completo crezca */
+  max-height: 90vh;
+  overflow: hidden;
   z-index: 60;
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);

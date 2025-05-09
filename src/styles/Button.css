@@ -8,9 +8,9 @@
   cursor: pointer;
   transition: opacity 0.2s ease;
   border: none;
+  font-size: 1rem;
 }
 
-/* Modificadores */
 .button--primary {
   background-color: #0097e6;
   color: white;
@@ -30,12 +30,29 @@
   background-color: rgba(0, 151, 230, 0.1);
 }
 
-/* Elemento */
 .button__icon {
-  width: 1.5rem; /* 20px */
+  width: 1.5rem;
   height: 1.5rem;
+  filter: invert(1);
 }
 
-.button--secondary .button__icon {
-  filter: invert(1);
+.button--disabled,
+.button--disabled[disabled],
+.button[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.button--disabled.button--primary {
+  background-color: #ccc;
+  color: white;
+}
+
+.button--disabled.button--secondary {
+  border-color: #ccc;
+  color: #aaa;
+}
+
+.button--disabled .button__icon {
+  filter: grayscale(1) brightness(0.7);
 }

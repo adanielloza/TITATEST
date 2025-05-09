@@ -1,7 +1,19 @@
 import React from "react";
 import "../styles/Modal.css";
+import useEscapeToClose from "../hooks/useEscapeToClose";
+import Button from "./Button";
 
-function Modal({ isOpen, onClose, title, subtitle, children, footer }) {
+function Modal({
+  isOpen,
+  onClose,
+  title,
+  subtitle,
+  children,
+  onCancel,
+  onConfirm,
+}) {
+  useEscapeToClose(isOpen, onClose);
+
   if (!isOpen) return null;
 
   return (
@@ -17,7 +29,14 @@ function Modal({ isOpen, onClose, title, subtitle, children, footer }) {
 
         <div className="modal__body">{children}</div>
 
-        {footer && <div className="modal__footer">{footer}</div>}
+        <div className="modal__footer">
+          <Button
+            label="Cancelar"
+            variant="secondary"
+            onClick={onCancel || onClose}
+          />
+          <Button label="Guardar" variant="primary" onClick={onConfirm} />
+        </div>
       </div>
     </div>
   );

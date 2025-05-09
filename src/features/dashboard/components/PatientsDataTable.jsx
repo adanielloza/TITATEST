@@ -1,21 +1,36 @@
 import React, { useState } from "react";
 import Button from "../../../components/Button";
 import Modal from "../../../components/Modal";
+import Input from "../../../components/Input";
+import Spinner from "../../../components/Spinner";
 
 function PatientsDataTable() {
   const [open, setOpen] = useState(false);
+  const [nombre, setNombre] = useState("");
+  const [email, setEmail] = useState("");
+  const [edad, setEdad] = useState("");
+  const [nombreFuera, setNombreFuera] = useState("");
 
-  const handleSave = () => {
-    console.log("Guardado");
+  const handleCancel = () => {
+    console.log("Cancelar presionado");
     setOpen(false);
   };
 
-  const handleCancel = () => {
+  const handleSave = () => {
+    console.log("Guardar presionado");
     setOpen(false);
   };
 
   return (
     <div>
+      <Input
+        label="Nombre fuera del modal"
+        name="nombreFuera"
+        placeholder="Escribe aquí..."
+        value={nombreFuera}
+        onChange={(e) => setNombreFuera(e.target.value)}
+      />
+
       <Button
         label="Añadir Paciente"
         icon="/icons/person.svg"
@@ -26,80 +41,44 @@ function PatientsDataTable() {
       <Modal
         isOpen={open}
         onClose={handleCancel}
+        onCancel={handleCancel}
+        onConfirm={handleSave}
         title="Nuevo Paciente"
         subtitle="Completa los datos del formulario para registrar un paciente."
-        footer={
-          <>
-            <Button
-              label="Cancelar"
-              onClick={handleCancel}
-              variant="secondary"
-            />
-            <Button label="Guardar" onClick={handleSave} variant="primary" />
-          </>
-        }
       >
         <form>
-          <div className="form-group">
-            <label>Nombre</label>
-            <input type="text" placeholder="Nombre del paciente" />
-          </div>
-          <div className="form-group">
-            <label>Observaciones</label>
-            <textarea rows="3" placeholder="Escribe aquí..."></textarea>
-          </div>
-          <div className="form-group">
-            <label>Observaciones</label>
-            <textarea rows="3" placeholder="Escribe aquí..."></textarea>
-          </div>
-          <div className="form-group">
-            <label>Observaciones</label>
-            <textarea rows="3" placeholder="Escribe aquí..."></textarea>
-          </div>
-          <div className="form-group">
-            <label>Observaciones</label>
-            <textarea rows="3" placeholder="Escribe aquí..."></textarea>
-          </div>
-          <div className="form-group">
-            <label>Observaciones</label>
-            <textarea rows="3" placeholder="Escribe aquí..."></textarea>
-          </div>
-          <div className="form-group">
-            <label>Observaciones</label>
-            <textarea rows="3" placeholder="Escribe aquí..."></textarea>
-          </div>
-          <div className="form-group">
-            <label>Observaciones</label>
-            <textarea rows="3" placeholder="Escribe aquí..."></textarea>
-          </div>
-          <div className="form-group">
-            <label>Observaciones</label>
-            <textarea rows="3" placeholder="Escribe aquí..."></textarea>
-          </div>
-          <div className="form-group">
-            <label>Observaciones</label>
-            <textarea rows="3" placeholder="Escribe aquí..."></textarea>
-          </div>
-          <div className="form-group">
-            <label>Observaciones</label>
-            <textarea rows="3" placeholder="Escribe aquí..."></textarea>
-          </div>
-          <div className="form-group">
-            <label>Observaciones</label>
-            <textarea rows="3" placeholder="Escribe aquí..."></textarea>
-          </div>
-          <div className="form-group">
-            <label>Observaciones</label>
-            <textarea rows="3" placeholder="Escribe aquí..."></textarea>
-          </div>
-          <div className="form-group">
-            <label>Observaciones</label>
-            <textarea rows="3" placeholder="Escribe aquí..."></textarea>
-          </div>
-          <div className="form-group">
-            <label>Observaciones</label>
-            <textarea rows="3" placeholder="Escribe aquí..."></textarea>
-          </div>
+          <Input
+            label="Nombre"
+            name="nombre"
+            type="password"
+            placeholder="Solo letras"
+            value={nombre}
+            onChange={(e) => setNombre(e.target.value)}
+            onlyNumbers
+            maxLength={10}
+          />
+          <Input
+            label="Correo electrónico"
+            name="email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="ejemplo@dominio.com"
+            error={!email.includes("@")}
+            errorMessage="Correo inválido"
+          />
+          <Spinner
+            label="Edad"
+            name="edad"
+            value={edad}
+            onChange={(v) => {
+              console.log("Edad cambiada:", v); // Aquí agregamos el console.log
+              setEdad(v);
+            }}
+            min={-120} // Permite que la edad pueda ser negativa
+            max={120}
+            step={1}
+          />
         </form>
       </Modal>
     </div>
