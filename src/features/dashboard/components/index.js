@@ -4,3 +4,4 @@ export { default as SidebarHeader } from "./SidebarHeader";
 export { default as SidebarLink } from "./SidebarLink";
 export { default as Container } from "./Container";
 export { default as PatientsDataTable } from "./PatientsDataTable";
+export { default as PageHeader } from "./PageHeader";
