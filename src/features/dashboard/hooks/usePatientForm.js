@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { isValidEmail, isValidPhone } from "../../../utils/validators";
 
 const usePatientForm = () => {
   const [nombre, setNombre] = useState("");
@@ -12,36 +13,29 @@ const usePatientForm = () => {
   const [observaciones, setObservaciones] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);
 
-  const isValidEmail = (email) => {
-    const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-    return regex.test(email);
-  };
+  useEffect(() => {
+    const correoValido = !correoTutor || isValidEmail(correoTutor);
+    const telefonoValido = !telefonoTutor || isValidPhone(telefonoTutor);
 
-  const validateForm = () => {
     setIsFormValid(
-      nombre &&
-        apellido &&
+      nombre.trim() &&
+        apellido.trim() &&
+        fechaNacimiento &&
         sexo &&
         tipoTDAH &&
-        nombreTutor &&
-        telefonoTutor &&
-        isValidEmail(correoTutor) &&
-        fechaNacimiento
+        nombreTutor.trim() &&
+        correoValido &&
+        telefonoValido
     );
-  };
-
-  useEffect(() => {
-    validateForm();
   }, [
     nombre,
     apellido,
+    fechaNacimiento,
     sexo,
     tipoTDAH,
     nombreTutor,
     telefonoTutor,
     correoTutor,
-    observaciones,
-    fechaNacimiento,
   ]);
 
   return {
