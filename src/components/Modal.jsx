@@ -11,6 +11,7 @@ function Modal({
   children,
   onCancel,
   onConfirm,
+  isConfirmDisabled,
 }) {
   useEscapeToClose(isOpen, onClose);
 
@@ -35,7 +36,12 @@ function Modal({
             variant="secondary"
             onClick={onCancel || onClose}
           />
-          <Button label="Guardar" variant="primary" onClick={onConfirm} />
+          <Button
+            label="Guardar"
+            variant="primary"
+            onClick={onConfirm}
+            disabled={isConfirmDisabled}
+          />
         </div>
       </div>
     </div>
