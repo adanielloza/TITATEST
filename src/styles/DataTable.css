@@ -1,0 +1,127 @@
+.datatable {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+.datatable__controls {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.datatable__table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.datatable__table {
+  width: 100%;
+  min-width: 1000px;
+  table-layout: auto;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.datatable__th,
+.datatable__td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #e0e0e0;
+  text-align: center;
+  vertical-align: middle;
+  background-color: white;
+}
+
+.datatable__th {
+  background-color: #0097e6;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.datatable__empty {
+  text-align: center;
+  padding: 2rem;
+  color: #888;
+}
+
+.datatable__pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.datatable__page-button {
+  padding: 0.4rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.datatable__page-button.active {
+  background-color: #0097e6;
+  color: white;
+  font-weight: bold;
+}
+
+.datatable__icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-right: 0.75rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.datatable__icon:hover {
+  transform: scale(1.1);
+}
+
+.datatable__actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.datatable__icon--edit {
+  filter: invert(31%) sepia(97%) saturate(564%) hue-rotate(176deg)
+    brightness(91%) contrast(90%);
+}
+
+.datatable__icon--delete {
+  filter: invert(32%) sepia(86%) saturate(749%) hue-rotate(339deg)
+    brightness(95%) contrast(96%);
+}
+
+.datatable__td--scrollable {
+  min-width: 350px;
+  max-height: 120px;
+  overflow: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  text-align: center;
+  display: block;
+}
+
+.datatable__table thead tr:first-child th:first-child {
+  border-top-left-radius: 12px;
+}
+
+.datatable__table thead tr:first-child th:last-child {
+  border-top-right-radius: 12px;
+}
+
+/* Redondeo en las esquinas del último row */
+.datatable__table tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 12px;
+}
+
+.datatable__table tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 12px;
+}

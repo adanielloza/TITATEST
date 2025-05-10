@@ -1,0 +1,14 @@
+.page-header {
+  margin-bottom: 2rem;
+}
+
+.page-header__title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.page-header__subtitle {
+  font-size: 1.2rem;
+  color: gray;
+}

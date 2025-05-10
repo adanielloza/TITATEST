@@ -1,0 +1,62 @@
+.number-input {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 1rem;
+}
+
+.number-input__label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.number-input__wrapper {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.number-input__field {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: none;
+  text-align: center;
+}
+
+.number-input__button {
+  padding: 0.5rem 0.75rem;
+  font-size: 1.25rem;
+  background-color: #f0f0f0;
+  border: none;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.2s ease;
+}
+
+.number-input__button:hover:not(:disabled) {
+  background-color: #e0e0e0;
+}
+
+.number-input__button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.number-input--error .number-input__label {
+  color: #d32f2f;
+}
+
+.number-input--error .number-input__wrapper {
+  border-color: #d32f2f;
+  box-shadow: 0 0 0 2px rgba(211, 47, 47, 0.1);
+}
+
+.number-input__error {
+  font-size: 0.875rem;
+  color: #d32f2f;
+  margin-top: 0.25rem;
+}

@@ -14,9 +14,9 @@ export function useSidebarLinks() {
   const userLinks = [
     ...commonLinks,
     {
-      path: "/dashboard/settings",
-      label: "Configuración",
-      icon: "settings.svg",
+      path: "/dashboard/patients-management",
+      label: "Gestión de Pacientes",
+      icon: "person.svg",
     },
   ];
 
