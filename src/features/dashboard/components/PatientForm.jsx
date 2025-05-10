@@ -120,6 +120,7 @@ const PatientForm = ({ onDataChange }) => {
         value={observaciones}
         onChange={(e) => setObservaciones(e.target.value)}
         placeholder="Observaciones adicionales"
+        maxLength={300}
       />
     </>
   );

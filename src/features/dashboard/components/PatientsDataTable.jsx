@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { AddPatient } from "./";
-import DataTable from "../../../components/DataTable";
+import DataTable from "../../../components/DataTable/DataTable";
 import { rtdb, ref, get, child } from "../../../services/firebase";
 
 const calculateAge = (fechaNacimiento) => {
@@ -28,11 +28,14 @@ const PatientsDataTable = () => {
         const snapshot = await get(child(ref(rtdb), "pacientes"));
         if (snapshot.exists()) {
           const raw = snapshot.val();
-          const parsed = Object.values(raw).map((entry) => ({
-            id: entry.id,
-            ...entry.datos_personales,
-            edad: calculateAge(entry.datos_personales.fechaNacimiento),
-          }));
+          const parsed = Object.values(raw)
+            .map((entry) => ({
+              id: Number(entry.id),
+              ...entry.datos_personales,
+              edad: calculateAge(entry.datos_personales.fechaNacimiento),
+            }))
+            .sort((a, b) => a.id - b.id);
+
           setPatients(parsed);
         }
       } catch (error) {
@@ -59,6 +62,7 @@ const PatientsDataTable = () => {
   return (
     <div>
       <AddPatient />
+      <br />
       <DataTable
         columns={columns}
         data={patients}
