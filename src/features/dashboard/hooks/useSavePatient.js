@@ -1,16 +1,13 @@
-import { useLoader } from "../../../contexts/LoaderContext";
 import useToast from "../../../hooks/useToast";
 import { rtdb, ref, get, child, set } from "../../../services/firebase";
 import { useCapitalize, useFormatDate } from "../../../utils/formatters";
 
 const useSavePatient = () => {
-  const { showLoader, hideLoader } = useLoader();
   const { notify } = useToast();
   const capitalize = useCapitalize();
   const formatDate = useFormatDate();
 
   const savePatient = async (formData) => {
-    showLoader();
     try {
       const dbRef = ref(rtdb);
       const snapshot = await get(child(dbRef, "pacientes"));
@@ -45,8 +42,6 @@ const useSavePatient = () => {
     } catch (error) {
       console.error("Error al guardar paciente:", error);
       notify("error", "Error al registrar paciente");
-    } finally {
-      hideLoader();
     }
   };
 

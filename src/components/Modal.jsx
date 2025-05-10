@@ -1,4 +1,3 @@
-import React from "react";
 import "../styles/Modal.css";
 import useEscapeToClose from "../hooks/useEscapeToClose";
 import Button from "./Button";
@@ -12,6 +11,10 @@ function Modal({
   onCancel,
   onConfirm,
   isConfirmDisabled,
+  cancelLabel = "Cancelar",
+  confirmLabel = "Guardar",
+  cancelVariant = "secondary",
+  confirmVariant = "primary",
 }) {
   useEscapeToClose(isOpen, onClose);
 
@@ -32,13 +35,13 @@ function Modal({
 
         <div className="modal__footer">
           <Button
-            label="Cancelar"
-            variant="secondary"
+            label={cancelLabel}
+            variant={cancelVariant}
             onClick={onCancel || onClose}
           />
           <Button
-            label="Guardar"
-            variant="primary"
+            label={confirmLabel}
+            variant={confirmVariant}
             onClick={onConfirm}
             disabled={isConfirmDisabled}
           />

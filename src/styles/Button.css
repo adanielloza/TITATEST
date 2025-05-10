@@ -56,3 +56,12 @@
 .button--disabled .button__icon {
   filter: grayscale(1) brightness(0.7);
 }
+
+.button--delete {
+  background-color: #ff0000;
+  color: white;
+}
+
+.button--delete:hover {
+  opacity: 0.9;
+}

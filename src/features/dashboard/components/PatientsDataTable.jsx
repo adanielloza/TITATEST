@@ -1,7 +1,10 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AddPatient } from "./";
 import DataTable from "../../../components/DataTable/DataTable";
-import { rtdb, ref, get, child } from "../../../services/firebase";
+import Modal from "../../../components/Modal";
+import { rtdb, ref, get, child, remove } from "../../../services/firebase";
+import { useLoader } from "../../../contexts/LoaderContext";
+import useToast from "../../../hooks/useToast";
 
 const calculateAge = (fechaNacimiento) => {
   try {
@@ -21,9 +24,14 @@ const calculateAge = (fechaNacimiento) => {
 
 const PatientsDataTable = () => {
   const [patients, setPatients] = useState([]);
+  const [patientToDelete, setPatientToDelete] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { showLoader, hideLoader } = useLoader();
+  const { notify } = useToast();
 
-  useEffect(() => {
-    const fetchPatients = async () => {
+  const fetchPatients = async () => {
+    showLoader();
+    setTimeout(async () => {
       try {
         const snapshot = await get(child(ref(rtdb), "pacientes"));
         if (snapshot.exists()) {
@@ -35,16 +43,41 @@ const PatientsDataTable = () => {
               edad: calculateAge(entry.datos_personales.fechaNacimiento),
             }))
             .sort((a, b) => a.id - b.id);
-
           setPatients(parsed);
         }
       } catch (error) {
         console.error("Error fetching patients:", error);
+      } finally {
+        hideLoader();
       }
-    };
+    }, 500);
+  };
 
+  useEffect(() => {
     fetchPatients();
   }, []);
+
+  const handleDeleteClick = (row) => {
+    setPatientToDelete(row);
+    setIsModalOpen(true);
+  };
+
+  const handleConfirmDelete = async () => {
+    showLoader();
+    if (!patientToDelete?.id) return;
+    try {
+      const pacienteKey = `paciente_${patientToDelete.id}`;
+      await remove(ref(rtdb, `pacientes/${pacienteKey}`));
+      notify("success", "Paciente eliminado correctamente");
+      setIsModalOpen(false);
+      setPatientToDelete(null);
+      await fetchPatients(); // loader se mantiene hasta que esto termina
+    } catch (error) {
+      console.error("Error al eliminar paciente:", error);
+      notify("error", "Error al eliminar paciente");
+      hideLoader(); // ⛔ se oculta solo si falla
+    }
+  };
 
   const columns = [
     { key: "id", label: "ID" },
@@ -61,14 +94,34 @@ const PatientsDataTable = () => {
 
   return (
     <div>
-      <AddPatient />
+      <AddPatient onPatientAdded={fetchPatients} />
       <br />
       <DataTable
         columns={columns}
         data={patients}
         onEdit={(row) => console.log("Editar:", row)}
-        onDelete={(row) => console.log("Eliminar:", row)}
+        onDelete={handleDeleteClick}
       />
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        title="¿Eliminar paciente?"
+        subtitle={`Esta acción no se puede deshacer.`}
+        onCancel={() => setIsModalOpen(false)}
+        onConfirm={handleConfirmDelete}
+        cancelLabel="Cancelar"
+        confirmLabel="Eliminar"
+        cancelVariant="secondary"
+        confirmVariant="delete"
+      >
+        <p>
+          ¿Estás seguro que deseas eliminar al paciente{" "}
+          <strong>
+            {patientToDelete?.nombre} {patientToDelete?.apellido}
+          </strong>
+          ?
+        </p>
+      </Modal>
     </div>
   );
 };
