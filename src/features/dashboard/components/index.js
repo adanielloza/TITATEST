@@ -6,3 +6,4 @@ export { default as Container } from "./Container";
 export { default as PatientsDataTable } from "./PatientsDataTable";
 export { default as PageHeader } from "./PageHeader";
 export { default as AddPatient } from "./AddPatient";
+export { default as EditPatient } from "./EditPatient";

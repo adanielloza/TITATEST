@@ -1,7 +1,9 @@
 import { AddPatient } from "./";
+import EditPatient from "./EditPatient";
 import DataTable from "../../../components/DataTable/DataTable";
 import Modal from "../../../components/Modal";
 import usePatients from "../hooks/usePatients";
+import { useState } from "react";
 
 const columns = [
   { key: "id", label: "ID" },
@@ -17,6 +19,9 @@ const columns = [
 ];
 
 const PatientsDataTable = () => {
+  const [patientToEdit, setPatientToEdit] = useState(null);
+  const [isEditOpen, setIsEditOpen] = useState(false);
+
   const {
     patients,
     patientToDelete,
@@ -32,14 +37,25 @@ const PatientsDataTable = () => {
     setIsModalOpen(true);
   };
 
+  const handleEditClick = (row) => {
+    setPatientToEdit(row);
+    setIsEditOpen(true);
+  };
+
   return (
     <div>
       <AddPatient onPatientAdded={fetchPatients} />
+      <EditPatient
+        patient={patientToEdit}
+        isOpen={isEditOpen}
+        onClose={() => setIsEditOpen(false)}
+        onUpdated={fetchPatients}
+      />
       <br />
       <DataTable
         columns={columns}
         data={patients}
-        onEdit={(row) => console.log("Editar:", row)}
+        onEdit={handleEditClick}
         onDelete={handleDeleteClick}
       />
       <Modal

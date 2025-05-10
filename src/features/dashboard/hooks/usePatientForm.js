@@ -1,16 +1,33 @@
 import { useEffect, useState } from "react";
 import { isValidEmail, isValidPhone } from "../../../utils/validators";
 
-const usePatientForm = () => {
-  const [nombre, setNombre] = useState("");
-  const [apellido, setApellido] = useState("");
-  const [fechaNacimiento, setFechaNacimiento] = useState(null);
-  const [sexo, setSexo] = useState("");
-  const [tipoTDAH, setTipoTDAH] = useState("");
-  const [nombreTutor, setNombreTutor] = useState("");
-  const [telefonoTutor, setTelefonoTutor] = useState("");
-  const [correoTutor, setCorreoTutor] = useState("");
-  const [observaciones, setObservaciones] = useState("");
+const parseDate = (str) => {
+  if (!str) return null;
+  if (str instanceof Date) return str;
+  const [day, month, year] = str.split("/");
+  return new Date(`${year}-${month}-${day}`);
+};
+
+const usePatientForm = (initialValues = {}) => {
+  const [nombre, setNombre] = useState(initialValues.nombre || "");
+  const [apellido, setApellido] = useState(initialValues.apellido || "");
+  const [fechaNacimiento, setFechaNacimiento] = useState(
+    parseDate(initialValues.fechaNacimiento)
+  );
+  const [sexo, setSexo] = useState(initialValues.sexo || "");
+  const [tipoTDAH, setTipoTDAH] = useState(initialValues.tipoTDAH || "");
+  const [nombreTutor, setNombreTutor] = useState(
+    initialValues.nombreTutor || ""
+  );
+  const [telefonoTutor, setTelefonoTutor] = useState(
+    initialValues.telefonoTutor || ""
+  );
+  const [correoTutor, setCorreoTutor] = useState(
+    initialValues.correoTutor || ""
+  );
+  const [observaciones, setObservaciones] = useState(
+    initialValues.observaciones || ""
+  );
   const [isFormValid, setIsFormValid] = useState(false);
 
   useEffect(() => {

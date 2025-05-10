@@ -24,6 +24,14 @@ export const fetchAllPatients = async () => {
   return snapshot.exists() ? snapshot.val() : {};
 };
 
+export const updatePatientById = async (id, data) => {
+  const pacienteRef = ref(rtdb, `pacientes/paciente_${id}`);
+  await set(pacienteRef, {
+    id,
+    datos_personales: data,
+  });
+};
+
 export const deletePatientById = async (id) => {
   const key = `paciente_${id}`;
   await remove(ref(rtdb, `pacientes/${key}`));

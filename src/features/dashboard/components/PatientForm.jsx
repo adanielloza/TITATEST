@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Input, TextArea, Dropdown, DateInput } from "../../../components";
 import usePatientForm from "../hooks/usePatientForm";
 
-const PatientForm = ({ onDataChange }) => {
+const PatientForm = ({ onDataChange, initialData = {} }) => {
   const {
     nombre,
     setNombre,
@@ -23,7 +23,7 @@ const PatientForm = ({ onDataChange }) => {
     observaciones,
     setObservaciones,
     isFormValid,
-  } = usePatientForm();
+  } = usePatientForm(initialData);
 
   const today = new Date();
 
