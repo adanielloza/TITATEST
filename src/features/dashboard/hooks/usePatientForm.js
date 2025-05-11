@@ -35,14 +35,16 @@ const usePatientForm = (initialValues = {}) => {
     const telefonoValido = !telefonoTutor || isValidPhone(telefonoTutor);
 
     setIsFormValid(
-      nombre.trim() &&
-        apellido.trim() &&
-        fechaNacimiento &&
-        sexo &&
-        tipoTDAH &&
-        nombreTutor.trim() &&
-        correoValido &&
-        telefonoValido
+      Boolean(
+        nombre.trim() &&
+          apellido.trim() &&
+          fechaNacimiento &&
+          sexo &&
+          tipoTDAH &&
+          nombreTutor.trim() &&
+          correoValido &&
+          telefonoValido
+      )
     );
   }, [
     nombre,

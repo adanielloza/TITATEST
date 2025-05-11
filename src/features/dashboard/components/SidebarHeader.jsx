@@ -1,4 +1,3 @@
-import React from "react";
 import "../styles/SidebarHeader.css";
 
 export default function SidebarHeader({ collapsed, toggle }) {

@@ -1,4 +1,3 @@
-import React from "react";
 import "../styles/PageHeader.css";
 
 export default function PageHeader({ title, subtitle }) {
