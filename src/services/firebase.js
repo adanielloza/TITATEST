@@ -1,7 +1,15 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
-import { getDatabase, ref, set, get, child, remove } from "firebase/database";
+import {
+  getDatabase,
+  ref,
+  set,
+  get,
+  child,
+  remove,
+  update,
+} from "firebase/database";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -19,4 +27,4 @@ const db = getFirestore(app);
 const auth = getAuth(app);
 const rtdb = getDatabase(app);
 
-export { app, db, auth, rtdb, ref, set, get, child, remove };
+export { app, db, auth, rtdb, ref, set, get, child, remove, update };

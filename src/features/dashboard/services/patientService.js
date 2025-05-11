@@ -1,4 +1,12 @@
-import { rtdb, ref, get, child, set, remove } from "../../../services/firebase";
+import {
+  rtdb,
+  ref,
+  get,
+  child,
+  set,
+  remove,
+  update,
+} from "../../../services/firebase";
 
 export const savePatientToDB = async (data) => {
   const dbRef = ref(rtdb);
@@ -26,8 +34,7 @@ export const fetchAllPatients = async () => {
 
 export const updatePatientById = async (id, data) => {
   const pacienteRef = ref(rtdb, `pacientes/paciente_${id}`);
-  await set(pacienteRef, {
-    id,
+  await update(pacienteRef, {
     datos_personales: data,
   });
 };
