@@ -51,7 +51,7 @@ const ActivityTracking = () => {
             <ActivityProgressCard />
           </div>
           <div className="activity-tracking__card">
-            <ActivityHistoryCard />
+            <ActivityHistoryCard activities={activityHistory} />
           </div>
           <div className="activity-tracking__card">
             <ActivityResultsCard />
