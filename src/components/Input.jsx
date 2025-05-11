@@ -1,4 +1,3 @@
-import React from "react";
 import "../styles/Input.css";
 import useInputValidation from "../hooks/useInputValidation";
 

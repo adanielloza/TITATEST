@@ -1,4 +1,3 @@
-import React from "react";
 import "../styles/Dropdown.css";
 
 function Dropdown({
@@ -28,7 +27,7 @@ function Dropdown({
       <select
         id={name}
         name={name}
-        value={value}
+        value={value ?? ""}
         onChange={onChange}
         required={required}
         disabled={disabled}
