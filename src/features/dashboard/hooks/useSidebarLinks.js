@@ -18,6 +18,11 @@ export function useSidebarLinks() {
       label: "Gestión de Pacientes",
       icon: "person.svg",
     },
+    {
+      path: "/dashboard/activity-management",
+      label: "Seguimiento Actividades",
+      icon: "activity.svg",
+    },
   ];
 
   return role === "admin" ? adminLinks : userLinks;

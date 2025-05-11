@@ -6,6 +6,7 @@ import AdminHome from "../features/dashboard/pages/admin/AdminHome";
 import ManageUsers from "../features/dashboard/pages/admin/ManageUsers";
 import UserHome from "../features/dashboard/pages/user/UserHome";
 import PatientsManagement from "../features/dashboard/pages/user/PatientsManagement";
+import ActivityTracking from "../features/dashboard/pages/user/ActivityTracking";
 
 export default function DashboardRoutes() {
   const userData = JSON.parse(localStorage.getItem("user") || "{}");
@@ -26,6 +27,10 @@ export default function DashboardRoutes() {
               <Route
                 path="patients-management"
                 element={<PatientsManagement />}
+              />
+              <Route
+                path="activity-management"
+                element={<ActivityTracking />}
               />
             </>
           ) : (

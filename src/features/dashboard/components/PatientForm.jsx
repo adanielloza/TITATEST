@@ -94,14 +94,14 @@ const PatientForm = ({ onDataChange, initialData = {} }) => {
         required
       />
       <Input
-        label="*Nombre del Tutor"
+        label="Nombre del Tutor"
         value={nombreTutor}
         onChange={(e) => setNombreTutor(e.target.value)}
         required
         onlyLetters
       />
       <Input
-        label="*Teléfono del Tutor"
+        label="Teléfono del Tutor"
         value={telefonoTutor}
         onChange={(e) => setTelefonoTutor(e.target.value)}
         required
