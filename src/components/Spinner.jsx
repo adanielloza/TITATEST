@@ -1,4 +1,3 @@
-import React from "react";
 import { useNumberInput } from "../hooks/useNumberInput";
 import "../styles/Spinner.css";
 
