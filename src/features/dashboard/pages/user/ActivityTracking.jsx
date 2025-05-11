@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { PageHeader } from "../../components";
+import {
+  PageHeader,
+  PatientInfoCard,
+  ActivityHistoryCard,
+  ActivityProgressCard,
+  ActivityResultsCard,
+} from "../../components";
 import { Dropdown } from "../../../../components/";
 import usePatientDropdown from "../../hooks/usePatientDropdown";
 import usePatientActivityData from "../../hooks/usePatientActivityData";
@@ -39,16 +45,16 @@ const ActivityTracking = () => {
       {selectedPatientId && (
         <div className="activity-tracking__grid">
           <div className="activity-tracking__card">
-            🧍 Información del Paciente
+            <PatientInfoCard />
           </div>
           <div className="activity-tracking__card">
-            📊 Seguimiento de Actividades
+            <ActivityProgressCard />
           </div>
           <div className="activity-tracking__card">
-            🕓 Historial de Actividades
+            <ActivityHistoryCard />
           </div>
           <div className="activity-tracking__card">
-            📈 Resultados de Actividades
+            <ActivityResultsCard />
           </div>
         </div>
       )}
