@@ -1,5 +1,9 @@
 export const useCapitalize = () => (text) =>
-  text.toLowerCase().replace(/\b\w/g, (char) => char.toUpperCase());
+  text
+    .toLowerCase()
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
 
 export const useFormatDate = () => (dateObj) => {
   if (!(dateObj instanceof Date)) return "";
