@@ -7,3 +7,7 @@ export { default as PatientsDataTable } from "./PatientsDataTable";
 export { default as PageHeader } from "./PageHeader";
 export { default as AddPatient } from "./AddPatient";
 export { default as EditPatient } from "./EditPatient";
+export { default as PatientInfoCard } from "./ActivityTracking/PatientInfoCard";
+export { default as ActivityProgressCard } from "./ActivityTracking/ActivityProgressCard";
+export { default as ActivityResultsCard } from "./ActivityTracking/ActivityResultsCard";
+export { default as ActivityHistoryCard } from "./ActivityTracking/ActivityHistoryCard";
