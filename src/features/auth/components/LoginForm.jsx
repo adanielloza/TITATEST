@@ -1,67 +1,62 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import Button from "../../../components/Button"; // Adjust path if needed
 
 export default function LoginForm({ data, errorMsg, onChange, onSubmit }) {
   return (
-    <form
-      onSubmit={onSubmit}
-      className="mx-auto w-full max-w-sm lg:w-96 space-y-6"
-    >
-      {errorMsg && <div className="text-sm text-red-600">{errorMsg}</div>}
+    <form onSubmit={onSubmit} className="space-y-6">
+      {errorMsg && (
+        <div className="text-red-600 text-sm">{errorMsg}</div>
+      )}
 
+      {/* Email */}
       <div>
-        <label
-          htmlFor="email"
-          className="block text-sm font-medium text-gray-900"
-        >
+        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
           Email address
         </label>
         <input
           id="email"
           name="email"
           type="email"
-          required
           value={data.email}
           onChange={onChange}
           placeholder="you@example.com"
-          className="mt-2 block w-full rounded-md border-gray-300 px-3 py-1.5 focus:outline-indigo-600 sm:text-sm"
+          className="w-full rounded-lg border border-gray-200 px-4 py-3 
+                     focus:outline-none focus:ring-2 focus:ring-blue-300"
         />
       </div>
 
+      {/* Password */}
       <div>
-        <label
-          htmlFor="password"
-          className="block text-sm font-medium text-gray-900"
-        >
+        <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
           Password
         </label>
         <input
           id="password"
           name="password"
           type="password"
-          required
           value={data.password}
           onChange={onChange}
           placeholder="••••••••"
-          className="mt-2 block w-full rounded-md border-gray-300 px-3 py-1.5 focus:outline-indigo-600 sm:text-sm"
+          className="w-full rounded-lg border border-gray-200 px-4 py-3 
+                     focus:outline-none focus:ring-2 focus:ring-blue-300"
         />
       </div>
 
-      <div className="text-sm text-right">
-        <button
-          type="button"
-          className="font-semibold text-indigo-600 hover:text-indigo-500"
-          onClick={() => alert("Implementar recuperación de contraseña")}
-        >
+      {/* Forgot link */}
+      <div className="text-right">
+        <Link to="/forgot-password" className="text-sm text-blue-600 hover:underline">
           Forgot password?
-        </button>
+        </Link>
       </div>
 
-      <button
+      {/* Universal Button */}
+      <Button
         type="submit"
-        className="w-full rounded-md bg-indigo-600 px-3 py-1.5 text-white hover:bg-indigo-500 focus:outline-indigo-600 sm:text-sm font-semibold"
-      >
-        Sign in
-      </button>
+        variant="primary"
+        label="Sign in"
+        className="w-[320px] mx-auto block py-3 text-lg"
+      />
     </form>
   );
 }
