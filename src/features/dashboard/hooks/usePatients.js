@@ -16,23 +16,21 @@ const usePatients = () => {
 
   const fetchPatients = async () => {
     showLoader();
-    setTimeout(async () => {
-      try {
-        const raw = await fetchAllPatients();
-        const parsed = Object.values(raw)
-          .map((entry) => ({
-            id: Number(entry.id),
-            ...entry.datos_personales,
-            edad: calculateAge(entry.datos_personales.fechaNacimiento),
-          }))
-          .sort((a, b) => a.id - b.id);
-        setPatients(parsed);
-      } catch (error) {
-        console.error("Error al cargar pacientes:", error);
-      } finally {
-        hideLoader();
-      }
-    }, 500);
+    try {
+      const raw = await fetchAllPatients();
+      const parsed = Object.values(raw)
+        .map((entry) => ({
+          id: Number(entry.id),
+          ...entry.datos_personales,
+          edad: calculateAge(entry.datos_personales.fechaNacimiento),
+        }))
+        .sort((a, b) => a.id - b.id);
+      setPatients(parsed);
+    } catch (error) {
+      console.error("Error al cargar pacientes:", error);
+    } finally {
+      hideLoader();
+    }
   };
 
   const confirmDelete = async () => {

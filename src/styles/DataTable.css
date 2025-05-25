@@ -106,7 +106,7 @@
   white-space: pre-wrap;
   word-break: break-word;
   text-align: center;
-  display: block;
+  display: table-cell;
 }
 
 .datatable__table thead tr:first-child th:first-child {

@@ -15,8 +15,9 @@ const Controls = ({
       onChange={(e) => setSearch(e.target.value)}
     />
     <div className="datatable__rows-per-page">
-      <label>Filas por página:</label>
+      <label htmlFor="rowsPerPage">Filas por página:</label>
       <select
+        id="rowsPerPage"
         value={rowsPerPage}
         onChange={(e) => {
           setPage(1);

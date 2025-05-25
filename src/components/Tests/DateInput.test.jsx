@@ -52,4 +52,10 @@ describe("DateInput component", () => {
     const input = screen.getByRole("textbox");
     expect(input).toBeRequired();
   });
+
+  it("no lanza error si onChange no está definido", () => {
+    render(<DateInput label="Sin onChange" />);
+    fireEvent.click(screen.getByTestId("calendar"));
+    expect(screen.getByRole("textbox")).toBeInTheDocument();
+  });
 });
