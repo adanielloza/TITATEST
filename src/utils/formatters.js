@@ -12,3 +12,17 @@ export const useFormatDate = () => (dateObj) => {
   const year = dateObj.getFullYear();
   return `${day}/${month}/${year}`;
 };
+
+export const formatDateTime = (isoString) => {
+  const date = new Date(isoString);
+  const fecha = date.toLocaleDateString("es-EC", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  });
+  const hora = date.toLocaleTimeString("es-EC", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+  return { fecha, hora };
+};

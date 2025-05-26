@@ -30,9 +30,8 @@
   border-radius: 12px;
   min-height: 120px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
-  color: white;
   text-align: left;
-  cursor: pointer; /* 👈 Añade esto */
+  cursor: pointer;
   transition: border 0.2s ease, background-color 0.2s ease;
 }
 
@@ -40,7 +39,7 @@
   width: 48px;
   height: 48px;
   margin-bottom: 0.75rem;
-  filter: brightness(0) invert(1);
+  filter: none;
 }
 
 .activity-card__title {
@@ -58,20 +57,23 @@
   line-height: 1.2;
 }
 
-/* 🎨 Colores más vivos y profesionales */
-.card--blue {
-  background-color: #228be6; /* azul vivo */
+.activity-card__difficulty {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: 999px;
+  display: inline-block;
+  color: inherit;
+  background-color: rgba(255, 255, 255, 0.15);
+  border: none;
 }
 
-.card--purple {
-  background-color: #7048e8; /* púrpura elegante */
+.activity-card__difficulty.outlined {
+  background-color: transparent;
+  border: 1px solid currentColor;
 }
 
-.card--green {
-  background-color: #40c057; /* verde profesional */
-}
-
-/* 📱 Responsive: 1 columna en pantallas menores a 480px */
 @media (max-width: 480px) {
   .activity-history__grid {
     grid-template-columns: 1fr;
@@ -99,6 +101,6 @@
 }
 
 .activity-card.selected {
-  border-width: 4px !important;
-  border-style: solid;
+  color: white;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
