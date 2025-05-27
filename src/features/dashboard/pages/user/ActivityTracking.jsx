@@ -49,7 +49,7 @@ const ActivityTracking = () => {
       {selectedPatientId && (
         <div className="activity-tracking__grid">
           <div className="activity-tracking__card">
-            <PatientInfoCard />
+            <PatientInfoCard patient={patientInfo} />
           </div>
           <div className="activity-tracking__card">
             <ActivityProgressCard />
