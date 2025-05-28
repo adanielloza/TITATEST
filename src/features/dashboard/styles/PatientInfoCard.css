@@ -1,0 +1,164 @@
+.patient-card {
+  padding: 1.5rem;
+}
+
+.patient-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.patient-card__avatar {
+  width: 150px;
+  height: 150px;
+}
+
+.patient-card__name {
+  font-size: 1.6rem;
+  margin: 0;
+  text-align: right;
+  font-weight: 600;
+  color: #222;
+  max-width: 60%;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
+}
+
+.patient-card__titles {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  width: 100%;
+  text-align: center;
+  align-items: center;
+}
+
+.patient-card__title {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #333;
+  flex: 1;
+  padding: 0 1rem;
+  text-align: center;
+}
+
+.patient-card__rows {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.patient-card__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.patient-card__field {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  justify-content: flex-start;
+  max-width: 100%;
+}
+
+.patient-card__label {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #444;
+  margin-bottom: 0.2rem;
+}
+
+.patient-card__value {
+  font-size: 1rem;
+  color: #111;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  max-width: 100%;
+  word-break: break-word;
+}
+
+.patient-card__observations {
+  border-top: 1px solid #eee;
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  .patient-card__titles {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .patient-card__title {
+    text-align: center;
+    font-size: 1rem;
+  }
+
+  .patient-card__rows {
+    gap: 1rem;
+  }
+
+  .patient-card__row {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .patient-card__field {
+    flex: none;
+    width: 100%;
+  }
+
+  .patient-card__name {
+    font-size: 1.3rem;
+    text-align: center;
+    margin-top: 1rem;
+    max-width: 100%;
+  }
+
+  .patient-card__header {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .patient-card__avatar {
+    width: 120px;
+    height: 120px;
+  }
+
+  .patient-card__name {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+
+  .patient-card__title {
+    font-size: 0.95rem;
+    padding: 0.5rem;
+  }
+
+  .patient-card__field {
+    font-size: 0.9rem;
+  }
+
+  .patient-card__label {
+    font-size: 0.75rem;
+  }
+
+  .patient-card__value {
+    font-size: 0.9rem;
+  }
+
+  .patient-card__observations {
+    font-size: 0.9rem;
+    padding-top: 0.75rem;
+  }
+}

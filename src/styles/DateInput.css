@@ -1,0 +1,51 @@
+.date-input {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.date-input__label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.date-input__field {
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  width: 100%;
+}
+
+.date-input__calendar {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  margin-top: 0.5rem;
+  width: 100%;
+  max-width: 100%;
+}
+
+.react-calendar {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .date-input__calendar .react-calendar {
+    width: 100%;
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .date-input__calendar .react-calendar {
+    width: auto;
+    font-size: 0.75rem;
+  }
+}

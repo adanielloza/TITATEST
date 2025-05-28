@@ -1,0 +1,7 @@
+.dashboard-main {
+  flex: 1;
+  padding: 1rem 1.5rem;
+  background-color: #f3f4f6;
+  overflow: hidden;
+  min-width: 0;
+}
