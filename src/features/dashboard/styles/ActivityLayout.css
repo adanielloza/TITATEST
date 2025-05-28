@@ -1,0 +1,46 @@
+.activity-layout {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  height: 100%;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+}
+
+.activity-layout__column--left {
+  width: calc(40% - 0.5rem);
+  max-width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 200px;
+  box-sizing: border-box;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.activity-layout__column--right {
+  width: calc(60% - 0.5rem);
+  max-width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 200px;
+  box-sizing: border-box;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 760px) {
+  .activity-layout {
+    flex-direction: column;
+  }
+
+  .activity-layout__column--left,
+  .activity-layout__column--right {
+    width: 100%;
+    height: auto;
+  }
+}
