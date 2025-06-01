@@ -1,19 +1,47 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import ActivityLayout from "./ActivityLayout";
 import ResponseTimeChart from "../Charts/ResponseTimeLineChart";
 import ErrorsLineChart from "../Charts/ErrorsLineChart";
-import Dropdown from "../../../../components/Dropdown";
-import ActivityLeftContent from "./ActivityLeftContent";
+import ActivityInfoPanel from "./ActivityInfoPanel";
+import ActivityChartPanel from "./ActivityChartPanel";
+import { getDificultad } from "../../../../utils/getDificultad";
+import { formatDateTime } from "../../../../utils/formatters";
+
+const formatSessionTime = (seconds) => {
+  if (!seconds || typeof seconds !== "number") return "0s";
+  const mins = Math.floor(seconds / 60);
+  const secs = Math.round(seconds % 60);
+  return mins > 0 ? `${mins}m ${secs}s` : `${secs}s`;
+};
 
 const ActivityThreeResults = ({ data }) => {
   const preguntas = data?.game_results?.preguntas || [];
   const [selectedChart, setSelectedChart] = useState("tiempo");
 
-  useEffect(() => {
-    console.log("📦 Datos completos de la sesión seleccionada:", data);
-    console.log("📊 game_results:", data?.game_results);
-    console.log("📋 Preguntas:", data?.game_results?.preguntas);
-  }, [preguntas]);
+  const { fecha: fechaFormatted, hora } = formatDateTime(data.fecha);
+  const dificultad = getDificultad(data.actividadId, data.game_settings);
+  const tiempoSesion = formatSessionTime(data.game_results.session_time);
+
+  const infoItems = [
+    { icon: "📅", label: "Fecha", value: `${fechaFormatted} ${hora}` },
+    { icon: "🎯", label: "Dificultad", value: dificultad },
+    { icon: "⏱️", label: "Tiempo de sesión", value: tiempoSesion },
+    {
+      icon: "🧠",
+      label: "Elementos por secuencia",
+      value: data.game_settings.cantidad_elementos,
+    },
+    {
+      icon: "❓",
+      label: "Preguntas",
+      value: data.game_settings.cantidad_preguntas,
+    },
+    {
+      icon: "🕒",
+      label: "Tiempo de memorización",
+      value: `${data.game_settings.tiempo} segundos`,
+    },
+  ];
 
   const chartOptions = [
     { value: "tiempo", label: "Tiempo de respuesta" },
@@ -22,44 +50,19 @@ const ActivityThreeResults = ({ data }) => {
 
   return (
     <ActivityLayout
-      leftContent={
-        <ActivityLeftContent
-          actividadId={data.actividadId}
-          fecha={data.fecha}
-          gameSettings={data.game_settings}
-          gameResults={data.game_results}
-        />
-      }
+      leftContent={<ActivityInfoPanel items={infoItems} />}
       rightContent={
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "1rem",
-            width: "100%",
-            height: "100%",
-          }}
+        <ActivityChartPanel
+          chartOptions={chartOptions}
+          selectedChart={selectedChart}
+          onChartChange={setSelectedChart}
         >
-          <Dropdown
-            name="chart-selector"
-            value={selectedChart}
-            onChange={(e) => setSelectedChart(e.target.value)}
-            options={chartOptions}
-            placeholder="Selecciona un gráfico"
-          />
-          <div
-            style={{
-              flexGrow: 1,
-              minHeight: 0,
-            }}
-          >
-            {selectedChart === "tiempo" ? (
-              <ResponseTimeChart preguntas={preguntas} />
-            ) : (
-              <ErrorsLineChart preguntas={preguntas} />
-            )}
-          </div>
-        </div>
+          {selectedChart === "tiempo" ? (
+            <ResponseTimeChart preguntas={preguntas} />
+          ) : (
+            <ErrorsLineChart preguntas={preguntas} />
+          )}
+        </ActivityChartPanel>
       }
     />
   );

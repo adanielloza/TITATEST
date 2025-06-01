@@ -1,13 +1,19 @@
 import ActivityOneResults from "../Results/ActivityOneResults";
 import ActivityTwoResults from "../Results/ActivityTwoResults";
 import ActivityThreeResults from "../Results/ActivityThreeResults";
+import "../../styles/ActivityResultsCard.css";
 
 const ActivityResultsCard = ({ selectedSession }) => {
   if (!selectedSession) {
     return (
-      <div>
-        <h3>📈 Resultados de Actividades</h3>
-        <p>Selecciona una actividad para ver sus resultados.</p>
+      <div className="activity-results">
+        <h3 className="activity-results__title">
+          📈 Resultados de Actividades
+        </h3>
+        <p className="activity-results__empty">
+          Aquí se mostrarán los resultados detallados cuando hayan sesiones en
+          el historial de actividades.
+        </p>
       </div>
     );
   }
@@ -24,17 +30,6 @@ const ActivityResultsCard = ({ selectedSession }) => {
 
     case "actividad_3":
       return <ActivityThreeResults data={selectedSession} />;
-
-    default:
-      return (
-        <div>
-          <h3>📈 Resultados de Actividades</h3>
-          <p>No hay componente específico para esta actividad.</p>
-          <pre style={{ whiteSpace: "pre-wrap" }}>
-            {JSON.stringify(selectedSession, null, 2)}
-          </pre>
-        </div>
-      );
   }
 };
 
