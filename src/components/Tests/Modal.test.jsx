@@ -74,4 +74,19 @@ describe("Modal component", () => {
     expect(screen.getByText("Cerrar")).toBeInTheDocument();
     expect(screen.getByText("Aceptar")).toBeInTheDocument();
   });
+
+  it("usa onClose como fallback si onCancel no se proporciona", () => {
+    const onClose = vi.fn();
+    render(
+      <Modal
+        isOpen={true}
+        onClose={onClose}
+        title="Test"
+        subtitle="Test"
+        onConfirm={vi.fn()}
+      />
+    );
+    fireEvent.click(screen.getByText("Cancelar"));
+    expect(onClose).toHaveBeenCalled();
+  });
 });

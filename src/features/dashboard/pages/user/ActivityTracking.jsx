@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   PageHeader,
   PatientInfoCard,
@@ -14,6 +14,7 @@ import "../../styles/ActivityTracking.css";
 const ActivityTracking = () => {
   const { options } = usePatientDropdown();
   const [selectedPatientId, setSelectedPatientId] = useState("");
+  const [selectedSession, setSelectedSession] = useState(null);
 
   const { patientInfo, activityHistory } =
     usePatientActivityData(selectedPatientId);
@@ -36,7 +37,10 @@ const ActivityTracking = () => {
         <Dropdown
           name="paciente"
           value={selectedPatientId}
-          onChange={(e) => setSelectedPatientId(e.target.value)}
+          onChange={(e) => {
+            setSelectedPatientId(e.target.value);
+            setSelectedSession(null);
+          }}
           options={options}
           placeholder="Selecciona un paciente"
         />
@@ -45,16 +49,19 @@ const ActivityTracking = () => {
       {selectedPatientId && (
         <div className="activity-tracking__grid">
           <div className="activity-tracking__card">
-            <PatientInfoCard />
+            <PatientInfoCard patient={patientInfo} />
           </div>
           <div className="activity-tracking__card">
             <ActivityProgressCard />
           </div>
           <div className="activity-tracking__card">
-            <ActivityHistoryCard activities={activityHistory} />
+            <ActivityHistoryCard
+              activities={activityHistory}
+              onSessionSelect={setSelectedSession}
+            />
           </div>
           <div className="activity-tracking__card">
-            <ActivityResultsCard />
+            <ActivityResultsCard selectedSession={selectedSession} />
           </div>
         </div>
       )}
