@@ -1,4 +1,3 @@
-import React from "react";
 import ActivityOneResults from "../Results/ActivityOneResults";
 import ActivityTwoResults from "../Results/ActivityTwoResults";
 import ActivityThreeResults from "../Results/ActivityThreeResults";
