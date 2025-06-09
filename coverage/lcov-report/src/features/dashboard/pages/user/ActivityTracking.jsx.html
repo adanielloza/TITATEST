@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">16% </span>
+                <span class="strong">14.03% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>8/50</span>
+                <span class='fraction'>8/57</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">16% </span>
+                <span class="strong">14.03% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>8/50</span>
+                <span class='fraction'>8/57</span>
             </div>
         
             
@@ -128,7 +128,14 @@
 <a name='L63'></a><a href='#L63'>63</a>
 <a name='L64'></a><a href='#L64'>64</a>
 <a name='L65'></a><a href='#L65'>65</a>
-<a name='L66'></a><a href='#L66'>66</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -144,14 +151,8 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -168,10 +169,23 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -193,7 +207,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useState, useEffect } from "react";
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useState, useEffect } from "react";
 import {
   PageHeader,
   PatientInfoCard,
@@ -209,6 +223,7 @@ import "../../styles/ActivityTracking.css";
 const ActivityTracking = <span class="fstat-no" title="function not covered" >() =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >  const { options } = usePatientDropdown();</span>
 <span class="cstat-no" title="statement not covered" >  const [selectedPatientId, setSelectedPatientId] = useState("");</span>
+<span class="cstat-no" title="statement not covered" >  const [selectedSession, setSelectedSession] = useState(null);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  const { patientInfo, activityHistory } =</span>
 <span class="cstat-no" title="statement not covered" >    usePatientActivityData(selectedPatientId);</span>
@@ -231,7 +246,10 @@ const ActivityTracking = <span class="fstat-no" title="function not covered" >()
 <span class="cstat-no" title="statement not covered" >        &lt;Dropdown</span>
 <span class="cstat-no" title="statement not covered" >          name="paciente"</span>
 <span class="cstat-no" title="statement not covered" >          value={selectedPatientId}</span>
-<span class="cstat-no" title="statement not covered" >          onChange={(e) =&gt; setSelectedPatientId(e.target.value)}</span>
+<span class="cstat-no" title="statement not covered" >          onChange={(e) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >            setSelectedPatientId(e.target.value);</span>
+<span class="cstat-no" title="statement not covered" >            setSelectedSession(null);</span>
+<span class="cstat-no" title="statement not covered" >          }}</span>
 <span class="cstat-no" title="statement not covered" >          options={options}</span>
 <span class="cstat-no" title="statement not covered" >          placeholder="Selecciona un paciente"</span>
 <span class="cstat-no" title="statement not covered" >        /&gt;</span>
@@ -240,16 +258,19 @@ const ActivityTracking = <span class="fstat-no" title="function not covered" >()
 <span class="cstat-no" title="statement not covered" >      {selectedPatientId &amp;&amp; (</span>
 <span class="cstat-no" title="statement not covered" >        &lt;div className="activity-tracking__grid"&gt;</span>
 <span class="cstat-no" title="statement not covered" >          &lt;div className="activity-tracking__card"&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;PatientInfoCard /&gt;</span>
+<span class="cstat-no" title="statement not covered" >            &lt;PatientInfoCard patient={patientInfo} /&gt;</span>
 <span class="cstat-no" title="statement not covered" >          &lt;/div&gt;</span>
 <span class="cstat-no" title="statement not covered" >          &lt;div className="activity-tracking__card"&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;ActivityProgressCard /&gt;</span>
+<span class="cstat-no" title="statement not covered" >            &lt;ActivityProgressCard activityHistory={activityHistory} /&gt;</span>
 <span class="cstat-no" title="statement not covered" >          &lt;/div&gt;</span>
 <span class="cstat-no" title="statement not covered" >          &lt;div className="activity-tracking__card"&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;ActivityHistoryCard activities={activityHistory} /&gt;</span>
+<span class="cstat-no" title="statement not covered" >            &lt;ActivityHistoryCard</span>
+<span class="cstat-no" title="statement not covered" >              activities={activityHistory}</span>
+<span class="cstat-no" title="statement not covered" >              onSessionSelect={setSelectedSession}</span>
+<span class="cstat-no" title="statement not covered" >            /&gt;</span>
 <span class="cstat-no" title="statement not covered" >          &lt;/div&gt;</span>
 <span class="cstat-no" title="statement not covered" >          &lt;div className="activity-tracking__card"&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;ActivityResultsCard /&gt;</span>
+<span class="cstat-no" title="statement not covered" >            &lt;ActivityResultsCard selectedSession={selectedSession} /&gt;</span>
 <span class="cstat-no" title="statement not covered" >          &lt;/div&gt;</span>
 <span class="cstat-no" title="statement not covered" >        &lt;/div&gt;</span>
       )}
@@ -265,7 +286,7 @@ export default ActivityTracking;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-05-25T23:00:43.113Z
+                at 2025-06-09T20:52:44.679Z
             </div>
         <script src="../../../../../prettify.js"></script>
         <script>

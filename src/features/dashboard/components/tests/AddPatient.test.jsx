@@ -58,4 +58,18 @@ describe("AddPatient component", () => {
       expect(onPatientAdded).toHaveBeenCalled();
     });
   });
+
+  it("cierra el modal al cancelar", async () => {
+    render(<AddPatient />);
+    fireEvent.click(screen.getByText("Añadir Paciente"));
+
+    await waitFor(() =>
+      expect(screen.getByText("Nuevo Paciente")).toBeInTheDocument()
+    );
+    fireEvent.click(screen.getByText("Cancelar"));
+
+    await waitFor(() => {
+      expect(screen.queryByText("Nuevo Paciente")).not.toBeInTheDocument();
+    });
+  });
 });

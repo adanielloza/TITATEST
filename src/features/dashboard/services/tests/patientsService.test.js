@@ -105,8 +105,6 @@ describe("Performance tests", () => {
     await savePatientToDB({ nombre: "Prueba" });
 
     const duration = performance.now() - start;
-    console.log(`⏱️ Tiempo: ${duration.toFixed(2)}ms`);
-
     expect(duration).toBeLessThan(100);
   });
 });

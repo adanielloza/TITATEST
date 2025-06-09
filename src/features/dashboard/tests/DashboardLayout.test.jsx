@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import DashboardLayout from "../DashboardLayout";
+import { useSidebarLinks } from "../hooks/useSidebarLinks";
 
 vi.mock("../components", () => ({
   Sidebar: ({ links }) => (
@@ -13,8 +14,6 @@ vi.mock("../components", () => ({
 vi.mock("../hooks/useSidebarLinks", () => ({
   useSidebarLinks: vi.fn(),
 }));
-
-import { useSidebarLinks } from "../hooks/useSidebarLinks";
 
 describe("DashboardLayout", () => {
   it("renderiza Sidebar y DashboardMain con links de admin", () => {

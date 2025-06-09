@@ -1,4 +1,3 @@
-// ErrorsLineChart.jsx
 import {
   Chart as ChartJS,
   LineElement,

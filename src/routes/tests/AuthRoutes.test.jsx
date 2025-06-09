@@ -36,4 +36,13 @@ describe("AuthRoutes", () => {
 
     expect(screen.queryByText("Página de Login")).not.toBeInTheDocument();
   });
+
+  it("muestra LoginPage si no hay entrada de usuario en localStorage", () => {
+    render(
+      <MemoryRouter>
+        <AuthRoutes />
+      </MemoryRouter>
+    );
+    expect(screen.getByText("Página de Login")).toBeInTheDocument();
+  });
 });

@@ -6,7 +6,13 @@ const useActivitySessions = (activities) => {
         actividadId: actividad.actividadId,
       }))
     )
-    .sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
+    .sort((a, b) => {
+      const aDate = new Date(a.fecha);
+      const bDate = new Date(b.fecha);
+      const aTime = isNaN(aDate.getTime()) ? Infinity : aDate.getTime();
+      const bTime = isNaN(bDate.getTime()) ? Infinity : bDate.getTime();
+      return bTime - aTime;
+    });
 };
 
 export default useActivitySessions;

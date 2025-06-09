@@ -1,8 +1,6 @@
-// src/hooks/tests/useSidebarLinks.test.js
 import { renderHook } from "@testing-library/react";
 import { useSidebarLinks } from "../useSidebarLinks";
 
-// Limpia localStorage antes de cada test
 beforeEach(() => {
   localStorage.clear();
 });

@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">20% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>7/35</span>
+                <span class='fraction'>35/35</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">20% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>7/35</span>
+                <span class='fraction'>35/35</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -103,69 +103,69 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import useToast from "../../../hooks/useToast";
 import { savePatientToDB } from "../services/patientService";
 import { useCapitalize, useFormatDate } from "../../../utils/formatters";
 &nbsp;
-const useSavePatient = <span class="fstat-no" title="function not covered" >() =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  const { notify } = useToast();</span>
-<span class="cstat-no" title="statement not covered" >  const capitalize = useCapitalize();</span>
-<span class="cstat-no" title="statement not covered" >  const formatDate = useFormatDate();</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  const savePatient = async (formData) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    try {</span>
-<span class="cstat-no" title="statement not covered" >      const formatted = {</span>
-<span class="cstat-no" title="statement not covered" >        nombre: capitalize(formData.nombre),</span>
-<span class="cstat-no" title="statement not covered" >        apellido: capitalize(formData.apellido),</span>
-<span class="cstat-no" title="statement not covered" >        fechaNacimiento: formatDate(formData.fechaNacimiento),</span>
-<span class="cstat-no" title="statement not covered" >        sexo: capitalize(formData.sexo),</span>
-<span class="cstat-no" title="statement not covered" >        tipoTDAH: formData.tipoTDAH.toUpperCase(),</span>
-<span class="cstat-no" title="statement not covered" >        nombreTutor: capitalize(formData.nombreTutor),</span>
-<span class="cstat-no" title="statement not covered" >        telefonoTutor: formData.telefonoTutor,</span>
-<span class="cstat-no" title="statement not covered" >        correoTutor: formData.correoTutor.toLowerCase(),</span>
-<span class="cstat-no" title="statement not covered" >        observaciones: formData.observaciones || "",</span>
-<span class="cstat-no" title="statement not covered" >      };</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >      await savePatientToDB(formatted);</span>
-<span class="cstat-no" title="statement not covered" >      notify("success", `Paciente registrado correctamente`);</span>
-<span class="cstat-no" title="statement not covered" >    } catch (error) {</span>
-<span class="cstat-no" title="statement not covered" >      console.error("Error al guardar paciente:", error);</span>
-<span class="cstat-no" title="statement not covered" >      notify("error", "Error al registrar paciente");</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
-<span class="cstat-no" title="statement not covered" >  };</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  return { savePatient };</span>
-<span class="cstat-no" title="statement not covered" >};</span>
+const useSavePatient = () =&gt; {
+  const { notify } = useToast();
+  const capitalize = useCapitalize();
+  const formatDate = useFormatDate();
+&nbsp;
+  const savePatient = async (formData) =&gt; {
+    try {
+      const formatted = {
+        nombre: capitalize(formData.nombre),
+        apellido: capitalize(formData.apellido),
+        fechaNacimiento: formatDate(formData.fechaNacimiento),
+        sexo: capitalize(formData.sexo),
+        tipoTDAH: formData.tipoTDAH.toUpperCase(),
+        nombreTutor: capitalize(formData.nombreTutor),
+        telefonoTutor: formData.telefonoTutor,
+        correoTutor: formData.correoTutor.toLowerCase(),
+        observaciones: formData.observaciones || "",
+      };
+&nbsp;
+      await savePatientToDB(formatted);
+      notify("success", `Paciente registrado correctamente`);
+    } catch (error) {
+      console.error("Error al guardar paciente:", error);
+      notify("error", "Error al registrar paciente");
+    }
+  };
+&nbsp;
+  return { savePatient };
+};
 &nbsp;
 export default useSavePatient;
 &nbsp;</pre></td></tr></table></pre>
@@ -175,7 +175,7 @@ export default useSavePatient;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-05-25T23:00:43.113Z
+                at 2025-06-09T20:52:44.679Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

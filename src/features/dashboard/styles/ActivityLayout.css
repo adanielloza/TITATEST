@@ -2,14 +2,12 @@
   display: flex;
   gap: 1rem;
   width: 100%;
-  /* Elimina height: 100% para que crezca según contenido */
   box-sizing: border-box;
 }
 
 .activity-layout__column--left {
   width: calc(35% - 0.5rem);
   max-width: 100%;
-  /* height: 100%;  <- eliminar */
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -22,7 +20,6 @@
 .activity-layout__column--right {
   width: calc(65% - 0.5rem);
   max-width: 100%;
-  /* height: 100%; <- eliminar */
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -40,6 +37,6 @@
   .activity-layout__column--left,
   .activity-layout__column--right {
     width: 100%;
-    height: auto; /* asegúrate que aquí esté height auto */
+    height: auto;
   }
 }
