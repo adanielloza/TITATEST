@@ -19,6 +19,8 @@ const DataTable = ({
   const [page, setPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
+  const showActions = !!onEdit && !!onDelete;
+
   const filteredData = useMemo(() => filterData(data, search), [data, search]);
   const sortedData = useMemo(
     () => sortData(filteredData, sortKey, sortAsc),
@@ -49,6 +51,7 @@ const DataTable = ({
               sortAsc={sortAsc}
               onSort={setSortKey}
               toggleAsc={setSortAsc}
+              showActions={showActions}
             />
           </thead>
           <tbody>
@@ -57,6 +60,7 @@ const DataTable = ({
               columns={columns}
               onEdit={onEdit}
               onDelete={onDelete}
+              showActions={showActions}
             />
           </tbody>
         </table>
