@@ -102,4 +102,48 @@ describe("PatientsDataTable", () => {
     fireEvent.click(screen.getAllByText("Eliminar")[1]);
     expect(mockConfirmDelete).toHaveBeenCalled();
   });
+
+  it("ejecuta handleEditClick correctamente", () => {
+    render(<PatientsDataTable />);
+    fireEvent.click(screen.getByText("Editar"));
+    expect(screen.getByTestId("edit-modal")).toBeInTheDocument();
+  });
+
+  it("ejecuta handleDeleteClick correctamente", () => {
+    render(<PatientsDataTable />);
+    fireEvent.click(screen.getAllByText("Eliminar")[0]);
+    expect(screen.getByTestId("delete-modal")).toBeInTheDocument();
+  });
+
+  it("handleEditClick actualiza el estado de edición", () => {
+    render(<PatientsDataTable />);
+    fireEvent.click(screen.getByText("Editar"));
+    expect(screen.getByTestId("edit-modal")).toBeInTheDocument();
+  });
+
+  it("handleDeleteClick actualiza el estado del modal de eliminación", () => {
+    render(<PatientsDataTable />);
+    fireEvent.click(screen.getAllByText("Eliminar")[0]);
+    expect(screen.getByTestId("delete-modal")).toBeInTheDocument();
+  });
+
+  it("muestra modal de eliminación y ejecuta confirmDelete", () => {
+    vi.mock("../../hooks/usePatients.js", () => ({
+      default: () => ({
+        patients: [samplePatient],
+        patientToDelete: samplePatient,
+        isModalOpen: true,
+        setIsModalOpen: vi.fn(),
+        setPatientToDelete: vi.fn(),
+        confirmDelete: mockConfirmDelete,
+        fetchPatients: mockFetchPatients,
+      }),
+    }));
+
+    const { unmount } = render(<PatientsDataTable />);
+    expect(screen.getByTestId("delete-modal")).toBeInTheDocument();
+    fireEvent.click(screen.getAllByText("Eliminar")[1]); // botón de confirmar
+    expect(mockConfirmDelete).toHaveBeenCalled();
+    unmount();
+  });
 });

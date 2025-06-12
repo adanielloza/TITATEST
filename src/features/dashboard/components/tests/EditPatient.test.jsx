@@ -98,4 +98,42 @@ describe("EditPatient", () => {
       );
     });
   });
+
+  it("usa string vacío si no hay observaciones", async () => {
+    vi.mocked(updatePatientById).mockResolvedValue({});
+    vi.mock("../PatientForm.jsx", () => {
+      const MockForm = ({ onDataChange }) => {
+        useEffect(() => {
+          onDataChange({
+            isFormValid: true,
+            formData: {
+              nombre: "juan",
+              apellido: "perez",
+              fechaNacimiento: new Date("2010-05-05"),
+              sexo: "masculino",
+              tipoTDAH: "tdah",
+              nombreTutor: "ana",
+              telefonoTutor: "0999999999",
+              correoTutor: "ANA@GMAIL.COM",
+              // sin observaciones
+            },
+          });
+        }, [onDataChange]);
+        return <div data-testid="form">Formulario</div>;
+      };
+      return { __esModule: true, default: MockForm };
+    });
+
+    render(<EditPatient {...baseProps} />);
+    fireEvent.click(screen.getByText("Guardar"));
+
+    await waitFor(() => {
+      expect(updatePatientById).toHaveBeenCalledWith(
+        "123",
+        expect.objectContaining({
+          observaciones: "",
+        })
+      );
+    });
+  });
 });

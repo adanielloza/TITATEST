@@ -1,4 +1,3 @@
-import React from "react";
 import { Navigate } from "react-router-dom";
 import LoginPage from "../features/auth/LoginPage";
 

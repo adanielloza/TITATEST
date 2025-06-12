@@ -1,4 +1,11 @@
-const TableHeader = ({ columns, sortKey, sortAsc, onSort, toggleAsc }) => {
+const TableHeader = ({
+  columns,
+  sortKey,
+  sortAsc,
+  onSort,
+  toggleAsc,
+  showActions,
+}) => {
   const handleSort = (key) => {
     toggleAsc(sortKey === key ? !sortAsc : true);
     onSort(key);
@@ -15,7 +22,7 @@ const TableHeader = ({ columns, sortKey, sortAsc, onSort, toggleAsc }) => {
           {col.label}
         </th>
       ))}
-      <th className="datatable__th">Acciones</th>
+      {showActions && <th className="datatable__th">Acciones</th>}
     </tr>
   );
 };

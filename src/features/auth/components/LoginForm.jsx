@@ -1,17 +1,16 @@
-import React from "react";
 import { Link } from "react-router-dom";
-import Button from "../../../components/Button"; // Adjust path if needed
+import Button from "../../../components/Button";
 
 export default function LoginForm({ data, errorMsg, onChange, onSubmit }) {
   return (
     <form onSubmit={onSubmit} className="space-y-6">
-      {errorMsg && (
-        <div className="text-red-600 text-sm">{errorMsg}</div>
-      )}
+      {errorMsg && <div className="text-red-600 text-sm">{errorMsg}</div>}
 
-      {/* Email */}
       <div>
-        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+        <label
+          htmlFor="email"
+          className="block text-sm font-medium text-gray-700 mb-2"
+        >
           Email address
         </label>
         <input
@@ -26,9 +25,11 @@ export default function LoginForm({ data, errorMsg, onChange, onSubmit }) {
         />
       </div>
 
-      {/* Password */}
       <div>
-        <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+        <label
+          htmlFor="password"
+          className="block text-sm font-medium text-gray-700 mb-2"
+        >
           Password
         </label>
         <input
@@ -43,14 +44,15 @@ export default function LoginForm({ data, errorMsg, onChange, onSubmit }) {
         />
       </div>
 
-      {/* Forgot link */}
       <div className="text-right">
-        <Link to="/forgot-password" className="text-sm text-blue-600 hover:underline">
+        <Link
+          to="/forgot-password"
+          className="text-sm text-blue-600 hover:underline"
+        >
           Forgot password?
         </Link>
       </div>
 
-      {/* Universal Button */}
       <Button
         type="submit"
         variant="primary"

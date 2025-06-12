@@ -2,7 +2,6 @@ import { render, screen } from "@testing-library/react";
 import { MemoryRouter, Outlet } from "react-router-dom";
 import DashboardRoutes from "../DashboardRoutes";
 
-// ✅ Mocks de layout y rutas protegidas con <Outlet />
 vi.mock("../ProtectedRoutes", () => ({
   default: () => (
     <div data-testid="protected">
@@ -19,7 +18,6 @@ vi.mock("../features/dashboard/DashboardLayout", () => ({
   ),
 }));
 
-// ✅ Mocks de componentes de página con contenido real
 vi.mock("../features/dashboard/pages/admin/AdminHome", () => ({
   default: () => (
     <div>
@@ -101,7 +99,6 @@ describe("DashboardRoutes", () => {
       </MemoryRouter>
     );
 
-    // Asegurarse de que ninguna página conocida se haya cargado
     expect(screen.queryByText(/inicio de admin/i)).not.toBeInTheDocument();
     expect(
       screen.queryByText(/bienvenido al dashboard/i)

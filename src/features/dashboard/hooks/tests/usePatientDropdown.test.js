@@ -72,4 +72,21 @@ describe("usePatientDropdown", () => {
       expect(result.current.options).toEqual([]);
     });
   });
+
+  it("maneja pacientes sin datos_personales", async () => {
+    get.mockResolvedValueOnce({
+      exists: () => true,
+      val: () => ({
+        paciente_3: {},
+      }),
+    });
+
+    const { result } = renderHook(() => usePatientDropdown());
+
+    await waitFor(() => {
+      expect(result.current.options).toEqual([
+        { value: "paciente_3", label: "undefined undefined" },
+      ]);
+    });
+  });
 });

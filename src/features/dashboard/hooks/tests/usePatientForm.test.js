@@ -48,7 +48,6 @@ describe("usePatientForm", () => {
       })
     );
 
-    // Esperamos el efecto de validación
     expect(result.current.isFormValid).toBe(true);
   });
 
@@ -114,5 +113,27 @@ describe("usePatientForm", () => {
     expect(result.current.apellido).toBe("Pérez");
     expect(result.current.sexo).toBe("Masculino");
     expect(result.current.observaciones).toBe("Ninguna");
+  });
+
+  it("acepta instancia de Date como fechaNacimiento", () => {
+    validators.isValidEmail.mockReturnValue(true);
+    validators.isValidPhone.mockReturnValue(true);
+
+    const fecha = new Date("2011-07-22");
+
+    const { result } = renderHook(() =>
+      usePatientForm({
+        nombre: "Lucía",
+        apellido: "Castro",
+        fechaNacimiento: fecha,
+        sexo: "Femenino",
+        tipoTDAH: "TDAH",
+        nombreTutor: "Verónica Castro",
+        telefonoTutor: "0988776655",
+        correoTutor: "lucia.castro@gmail.com",
+      })
+    );
+
+    expect(result.current.fechaNacimiento).toBe(fecha);
   });
 });
