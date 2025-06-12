@@ -1,5 +1,5 @@
-import React from "react";
 import { PageHeader } from "../../components";
+import { UsersDataTable } from "../../components";
 
 function ManageUsers() {
   return (
@@ -8,6 +8,7 @@ function ManageUsers() {
         title="Gestión de Usuarios"
         subtitle="Aquí puedes administrar los usuarios de la plataforma"
       />
+      <UsersDataTable />
     </div>
   );
 }
