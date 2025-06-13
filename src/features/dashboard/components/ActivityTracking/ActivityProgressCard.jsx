@@ -1,68 +1,62 @@
-import React from "react";
-import { Line } from "react-chartjs-2";
-import {
-  Chart as ChartJS,
-  LineElement,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  Tooltip,
-  Legend,
-} from "chart.js";
+import React, { useEffect, useState } from "react";
+import Dropdown from "../../../../components/Dropdown";
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Tooltip,
-  Legend
-);
+// Importa los componentes individuales
+import GeneralProgress from "../Progress/GeneralProgress";
+import Progress1 from "../Progress/Progress1";
+import Progress2 from "../Progress/Progress2";
+import Progress3 from "../Progress/Progress3";
 
-const ActivityProgressCard = () => {
-  const labels = Array.from({ length: 20 }, (_, i) => {
-    const date = new Date(2025, 4, i + 1); // Mayo
-    return date.toLocaleDateString("es-EC", {
-      day: "2-digit",
-      month: "short",
-    });
-  });
+const ActivityProgressCard = ({ activityHistory }) => {
+  const [selectedProgress, setSelectedProgress] = useState("general");
 
-  const data = {
-    labels,
-    datasets: [
-      {
-        label: "Porcentaje de mejora",
-        data: [
-          40, 45, 43, 48, 50, 55, 53, 57, 60, 63, 61, 65, 67, 70, 68, 72, 75,
-          73, 78, 80,
-        ],
-        fill: false,
-        borderColor: "#3498db",
-        tension: 0.3,
-        pointBackgroundColor: "#3498db",
-      },
-    ],
-  };
+  useEffect(() => {
+    console.log("📈 Datos recibidos en ActivityProgressCard:", activityHistory);
+  }, [activityHistory]);
 
-  const options = {
-    responsive: true,
-    maintainAspectRatio: false,
-    scales: {
-      y: {
-        min: 0,
-        max: 100,
-        ticks: {
-          stepSize: 10,
-        },
-      },
-    },
+  const dropdownOptions = [
+    { label: "Progreso General", value: "general" },
+    { label: "Progreso Actividad 1", value: "actividad_1" },
+    { label: "Progreso Actividad 2", value: "actividad_2" },
+    { label: "Progreso Actividad 3", value: "actividad_3" },
+  ];
+
+  const renderProgressComponent = () => {
+    if (selectedProgress === "general") {
+      return <GeneralProgress activityHistory={activityHistory} />;
+    }
+
+    const filtered = activityHistory.find(
+      (act) => act.actividadId === selectedProgress
+    );
+
+    switch (selectedProgress) {
+      case "actividad_1":
+        return <Progress1 activityHistory={filtered} />;
+      case "actividad_2":
+        return <Progress2 activityHistory={filtered} />;
+      case "actividad_3":
+        return <Progress3 activityHistory={filtered} />;
+      default:
+        return null;
+    }
   };
 
   return (
-    <div style={{ height: "300px" }}>
+    <div style={{ height: "350px" }}>
       <h3>📊 Seguimiento de Actividades</h3>
-      <Line data={data} options={options} />
+
+      <div style={{ marginBottom: "1rem" }}>
+        <Dropdown
+          name="progress-select"
+          value={selectedProgress}
+          onChange={(e) => setSelectedProgress(e.target.value)}
+          options={dropdownOptions}
+          placeholder="Selecciona progreso"
+        />
+      </div>
+
+      {renderProgressComponent()}
     </div>
   );
 };

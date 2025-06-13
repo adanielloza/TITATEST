@@ -14,6 +14,7 @@ export default defineConfig({
         "tailwind.config.js",
         "eslint.config.js",
         "vite.config.js",
+        "src/main.jsx",
       ],
     },
   },

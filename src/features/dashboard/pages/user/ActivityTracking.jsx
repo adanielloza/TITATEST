@@ -52,7 +52,7 @@ const ActivityTracking = () => {
             <PatientInfoCard patient={patientInfo} />
           </div>
           <div className="activity-tracking__card">
-            <ActivityProgressCard />
+            <ActivityProgressCard activityHistory={activityHistory} />
           </div>
           <div className="activity-tracking__card">
             <ActivityHistoryCard

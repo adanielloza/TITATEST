@@ -89,4 +89,32 @@ describe("usePatientActivityData", () => {
       expect(result.current.activityHistory).toEqual([]);
     });
   });
+
+  it("maneja errores en la obtención de datos del paciente", async () => {
+    firebase.get.mockRejectedValue(new Error("Fallo intencional"));
+    firebase.child.mockReturnValue({});
+
+    const { result } = renderHook(() => usePatientActivityData("error_id"));
+
+    await waitFor(() => {
+      expect(result.current.patientInfo).toBeNull();
+      expect(result.current.activityHistory).toEqual([]);
+    });
+
+    expect(showLoader).toHaveBeenCalled();
+    expect(hideLoader).toHaveBeenCalled();
+  });
+
+  it("no realiza ninguna acción si no se proporciona patientId", async () => {
+    const { result } = renderHook(() => usePatientActivityData(null));
+
+    await waitFor(() => {
+      expect(result.current.patientInfo).toBeNull();
+      expect(result.current.activityHistory).toEqual([]);
+    });
+
+    expect(showLoader).not.toHaveBeenCalled();
+    expect(hideLoader).not.toHaveBeenCalled();
+    expect(firebase.get).not.toHaveBeenCalled();
+  });
 });
