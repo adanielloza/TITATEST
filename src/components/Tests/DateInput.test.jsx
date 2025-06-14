@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import DateInput from "../DateInput";
+import DateInput, { formatDate } from "../DateInput";
 
 let mockedUseDatePicker;
 
@@ -105,6 +105,10 @@ describe("DateInput component", () => {
 
     render(<DateInput />);
     expect(screen.getByRole("textbox").value).toBe("");
+  });
+
+  it("formatDate retorna cadena vacía si date es undefined", () => {
+    expect(formatDate(undefined)).toBe("");
   });
 
   it("al hacer click en el input llama a handleCalendarToggle", () => {

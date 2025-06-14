@@ -63,4 +63,20 @@ describe("DataTable component", () => {
     const firstCell = screen.getAllByRole("cell")[0];
     expect(firstCell).toHaveTextContent("Lucía");
   });
+
+  it("renderiza columna de acciones cuando se pasan onEdit y onDelete", () => {
+    const mockEdit = vi.fn();
+    const mockDelete = vi.fn();
+
+    render(
+      <DataTable
+        columns={[...mockColumns]}
+        data={mockData}
+        onEdit={mockEdit}
+        onDelete={mockDelete}
+      />
+    );
+
+    expect(screen.getByText("Acciones")).toBeInTheDocument();
+  });
 });
