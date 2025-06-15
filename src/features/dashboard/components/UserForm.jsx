@@ -2,7 +2,7 @@ import { Input } from "../../../components";
 import { useEffect } from "react";
 import useUserForm from "../hooks/useUserForm";
 
-const UserForm = ({ onDataChange }) => {
+const UserForm = ({ onDataChange, initialData = {}, isEditing = false }) => {
   const {
     name,
     setName,
@@ -13,7 +13,7 @@ const UserForm = ({ onDataChange }) => {
     password,
     setPassword,
     isFormValid,
-  } = useUserForm();
+  } = useUserForm(initialData, isEditing);
 
   useEffect(() => {
     onDataChange({
@@ -38,21 +38,25 @@ const UserForm = ({ onDataChange }) => {
         required
         onlyLetters
       />
-      <Input
-        label="*Correo Electrónico"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-        type="email"
-      />
-      <Input
-        label="*Contraseña"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-        type="password"
-        minLength={6}
-      />
+      {!isEditing && (
+        <>
+          <Input
+            label="*Correo Electrónico"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            type="email"
+          />
+          <Input
+            label="*Contraseña"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            type="password"
+            minLength={6}
+          />
+        </>
+      )}
     </>
   );
 };

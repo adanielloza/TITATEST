@@ -1,28 +1,40 @@
-import { deleteDoc, doc } from "firebase/firestore";
-import { db, auth } from "../../../services/firebase";
+import {
+  collection,
+  getDocs,
+  query,
+  where,
+  deleteDoc,
+  doc,
+  setDoc,
+} from "firebase/firestore";
+import { db } from "../../../services/firebase";
 
-/**
- * Elimina usuario en Firestore.
- * Para eliminar de Authentication correctamente, se requiere usar Admin SDK desde backend.
- */
+export const saveUserToFirestore = async ({ uid, name, lastName, email }) => {
+  await setDoc(doc(db, "users", uid), {
+    name,
+    lastName,
+    email: email.toLowerCase(),
+    role: "user",
+  });
+};
+
+export const fetchUsersFromFirestore = async () => {
+  const usersRef = collection(db, "users");
+  const q = query(usersRef, where("role", "==", "user"));
+  const snapshot = await getDocs(q);
+
+  return snapshot.docs.map((doc, index) => ({
+    id: index + 1,
+    uid: doc.id,
+    ...doc.data(),
+  }));
+};
+
+export const updateUserById = async (uid, updatedData) => {
+  const userRef = doc(db, "users", uid);
+  await setDoc(userRef, updatedData, { merge: true });
+};
+
 export const deleteUserByUid = async (uid) => {
-  // 1. Eliminar de Firestore
   await deleteDoc(doc(db, "users", uid));
-
-  // 2. (Opcional) Eliminar desde Firebase Auth solo si es el usuario autenticado
-  try {
-    const user = auth.currentUser;
-    if (user && user.uid === uid) {
-      await user.delete();
-    } else {
-      console.warn(
-        "No se puede eliminar el usuario desde cliente si no es el autenticado."
-      );
-    }
-  } catch (error) {
-    console.warn(
-      "Error eliminando de Firebase Auth (requiere Admin SDK):",
-      error.message
-    );
-  }
 };
