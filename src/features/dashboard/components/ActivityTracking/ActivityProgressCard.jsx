@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Dropdown from "../../../../components/Dropdown";
 
 import GeneralProgress from "../Progress/GeneralProgress";
@@ -8,10 +8,6 @@ import Progress3 from "../Progress/Progress3";
 
 const ActivityProgressCard = ({ activityHistory }) => {
   const [selectedProgress, setSelectedProgress] = useState("general");
-
-  useEffect(() => {
-    console.log("📈 Datos recibidos en ActivityProgressCard:", activityHistory);
-  }, [activityHistory]);
 
   const dropdownOptions = [
     { label: "Progreso General", value: "general" },

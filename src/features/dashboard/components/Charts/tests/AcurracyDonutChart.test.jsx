@@ -1,7 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { vi } from "vitest";
 
-// Mock dinámico en test individual
 describe("AccuracyDonutChart", () => {
   beforeEach(() => {
     vi.clearAllMocks();

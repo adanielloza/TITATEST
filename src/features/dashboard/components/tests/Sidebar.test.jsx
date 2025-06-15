@@ -2,7 +2,6 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import Sidebar from "../Sidebar";
 
-// Mock de componentes hijos
 vi.mock("../SidebarHeader", () => ({
   default: ({ collapsed, toggle }) => (
     <button onClick={toggle} data-testid="toggle-btn">

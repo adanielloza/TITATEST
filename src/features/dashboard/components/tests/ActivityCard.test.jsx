@@ -27,7 +27,7 @@ describe("ActivityCard", () => {
     render(<ActivityCard {...defaultProps} />);
     const config = ACTIVITY_INFO[sesion.actividadId];
 
-    expect(config).toBeDefined(); // seguridad extra
+    expect(config).toBeDefined();
     expect(screen.getByText(config.name)).toBeInTheDocument();
     expect(screen.getByText("10/06/2025")).toBeInTheDocument();
     expect(screen.getByText("14:00")).toBeInTheDocument();

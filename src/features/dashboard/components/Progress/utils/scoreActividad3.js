@@ -26,12 +26,10 @@ export const calcularPuntajeActividad3 = async ({
 
   let puntaje = 100;
 
-  // Penalización fuerte si no llega al mínimo esperado
   if (respuestasCorrectas < esperado.respuestasCorrectas) {
     puntaje -= penalizaciones.muyPocasCorrectas;
   }
 
-  // Penalización proporcional si excede el tiempo por pregunta
   if (tiempoProm > esperado.tiempoPorPregunta) {
     const exceso = tiempoProm - esperado.tiempoPorPregunta;
     puntaje -= (exceso / esperado.tiempoPorPregunta) * penalizaciones.muyLento;

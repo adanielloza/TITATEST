@@ -59,7 +59,7 @@ describe("DataTable component", () => {
   it("ordena datos al hacer clic en un encabezado", () => {
     render(<DataTable columns={mockColumns} data={mockData} />);
     const edadHeader = screen.getByText("Edad");
-    fireEvent.click(edadHeader); // Orden asc
+    fireEvent.click(edadHeader);
     const firstCell = screen.getAllByRole("cell")[0];
     expect(firstCell).toHaveTextContent("Lucía");
   });

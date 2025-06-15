@@ -2,7 +2,6 @@ import { render, screen } from "@testing-library/react";
 import ActivityLeftContent from "../Results/ActivityLeftContent";
 import { describe, it, expect, vi } from "vitest";
 
-// Mocks generales
 vi.mock("../../../../utils/getDificultad", () => ({
   getDificultad: () => "Media",
 }));

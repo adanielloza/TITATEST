@@ -9,7 +9,6 @@ import ResponseTimePerQuestionChart from "../Charts/ResponseTimePerQuestionChart
 import { getDificultad } from "../../../../utils/getDificultad";
 import { formatDateTime } from "../../../../utils/formatters";
 
-// Formatea segundos a "Xm Ys"
 const formatSessionTime = (seconds) => {
   if (!seconds || typeof seconds !== "number") return "0s";
   const mins = Math.floor(seconds / 60);
@@ -17,7 +16,6 @@ const formatSessionTime = (seconds) => {
   return mins > 0 ? `${mins}m ${secs}s` : `${secs}s`;
 };
 
-// Suma total del tiempo por target
 const getTiempoTotalTargets = (targets = []) => {
   const totalSegundos = targets.reduce((acc, t) => acc + (t.tiempo || 0), 0);
   return formatSessionTime(totalSegundos);

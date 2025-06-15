@@ -6,7 +6,6 @@ export default function Home() {
       <Header />
 
       <main className="flex flex-col items-center text-center px-4 sm:px-6 lg:px-8 py-20">
-        {/* updated title using #3498db */}
         <h1 className="text-5xl sm:text-6xl font-extrabold text-gray-900 tracking-tight leading-tight">
           MindAR{" "}
           <span className="relative inline-block text-[#3498db]">
@@ -15,7 +14,6 @@ export default function Home() {
           </span>
         </h1>
 
-        {/* updated description */}
         <p className="mt-4 max-w-md text-lg text-gray-500">
           Aquí están los datos de los niños ingresados en MindAR.
         </p>

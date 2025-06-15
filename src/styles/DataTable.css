@@ -117,7 +117,6 @@
   border-top-right-radius: 12px;
 }
 
-/* Redondeo en las esquinas del último row */
 .datatable__table tbody tr:last-child td:first-child {
   border-bottom-left-radius: 12px;
 }
