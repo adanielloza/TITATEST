@@ -142,8 +142,21 @@ describe("PatientsDataTable", () => {
 
     const { unmount } = render(<PatientsDataTable />);
     expect(screen.getByTestId("delete-modal")).toBeInTheDocument();
-    fireEvent.click(screen.getAllByText("Eliminar")[1]); // botón de confirmar
+    fireEvent.click(screen.getAllByText("Eliminar")[1]);
     expect(mockConfirmDelete).toHaveBeenCalled();
     unmount();
+  });
+
+  it("ejecuta fetchPatients al agregar un paciente", () => {
+    render(<PatientsDataTable />);
+    fireEvent.click(screen.getByText("Mock AddPatient"));
+    expect(mockFetchPatients).toHaveBeenCalled();
+  });
+
+  it("cierra el modal de edición cuando se hace clic en cerrar", () => {
+    render(<PatientsDataTable />);
+    fireEvent.click(screen.getByText("Editar"));
+    fireEvent.click(screen.getByText("Cerrar"));
+    expect(screen.queryByTestId("edit-modal")).not.toBeInTheDocument();
   });
 });

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Dropdown from "../../../../components/Dropdown";
 
-// Importa los componentes individuales
 import GeneralProgress from "../Progress/GeneralProgress";
 import Progress1 from "../Progress/Progress1";
 import Progress2 from "../Progress/Progress2";

@@ -16,16 +16,23 @@ const UserForm = ({ onDataChange, initialData = {}, isEditing = false }) => {
   } = useUserForm(initialData, isEditing);
 
   useEffect(() => {
-    onDataChange({
-      formData: { name, lastName, email, password },
-      isFormValid,
-    });
-  }, [name, lastName, email, password, isFormValid, onDataChange]);
+    const shouldReport = isEditing
+      ? name.trim() && lastName.trim()
+      : name.trim() && lastName.trim() && email.trim() && password.length >= 6;
+
+    if (shouldReport) {
+      onDataChange({
+        formData: { name, lastName, email, password },
+        isFormValid,
+      });
+    }
+  }, [name, lastName, email, password, isFormValid, onDataChange, isEditing]);
 
   return (
     <>
       <Input
         label="*Nombre"
+        name="name"
         value={name}
         onChange={(e) => setName(e.target.value)}
         required
@@ -33,6 +40,7 @@ const UserForm = ({ onDataChange, initialData = {}, isEditing = false }) => {
       />
       <Input
         label="*Apellido"
+        name="lastName"
         value={lastName}
         onChange={(e) => setLastName(e.target.value)}
         required
@@ -42,6 +50,7 @@ const UserForm = ({ onDataChange, initialData = {}, isEditing = false }) => {
         <>
           <Input
             label="*Correo Electrónico"
+            name="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -49,6 +58,7 @@ const UserForm = ({ onDataChange, initialData = {}, isEditing = false }) => {
           />
           <Input
             label="*Contraseña"
+            name="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
