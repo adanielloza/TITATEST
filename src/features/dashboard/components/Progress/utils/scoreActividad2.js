@@ -16,7 +16,6 @@ export const calcularPuntaje = async ({
   const penalties = config.penalizaciones;
 
   if (!expected) {
-    console.warn(`No hay configuración para grid${gridSize}`);
     return 0;
   }
 
@@ -37,7 +36,6 @@ export const calcularPuntaje = async ({
     puntaje -= (exceso / expected.aperturas) * penalties.demasiadasAperturas;
   }
 
-  // 💡 BONUS por dificultad
   const dificultadBonus = {
     3: 1.0,
     4: 1.1,
@@ -62,7 +60,6 @@ export const generarObservaciones = async ({
   const expected = config.parametrosEsperadosPorGrid[`grid${gridSize}`];
 
   if (!expected) {
-    console.warn(`No hay configuración para grid${gridSize}`);
     return "";
   }
 
@@ -81,7 +78,6 @@ export const generarObservaciones = async ({
     obs += "- Tardó más de lo esperado. Posible distracción o dificultad. ";
   }
 
-  // 💬 Bonus cualitativo si hizo buen trabajo en dificultad media o alta
   if (correctRatio >= 0.9 && gridSize >= 4) {
     obs += "- Muy buen desempeño considerando la dificultad. ";
   }

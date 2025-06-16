@@ -200,4 +200,25 @@ describe("generarObservaciones", () => {
 
     expect(result).toBe("");
   });
+
+  it("devuelve un puntaje más alto con mayor dificultad (bonus)", async () => {
+    fetchParametrosActividad2.mockResolvedValue(MOCK_CONFIG);
+
+    const easy = await calcularPuntaje({
+      correct_answers: 2,
+      image_opens: 6,
+      time_spent_seconds: 120,
+      gridSize: 3,
+    });
+
+    const hard = await calcularPuntaje({
+      correct_answers: 15,
+      image_opens: 6,
+      time_spent_seconds: 140,
+      gridSize: 5,
+    });
+
+    expect(easy).toBeLessThan(100);
+    expect(hard).toBeGreaterThan(easy);
+  });
 });

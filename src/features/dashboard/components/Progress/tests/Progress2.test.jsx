@@ -3,12 +3,10 @@ import { render, screen } from "@testing-library/react";
 import { describe, it, vi, beforeEach, expect, beforeAll } from "vitest";
 import Progress2 from "../Progress2";
 
-// Mock del hook personalizado
 vi.mock("../hooks/useActividad2Data.js", () => ({
   useActividad2Data: vi.fn(),
 }));
 
-// Mock del componente DataTable
 vi.mock("../../../../../components/DataTable/DataTable.jsx", () => ({
   default: ({ data }) => (
     <div data-testid="data-table">
@@ -23,7 +21,6 @@ vi.mock("../../../../../components/DataTable/DataTable.jsx", () => ({
 
 import { useActividad2Data } from "../hooks/useActividad2Data";
 
-// 👇 Solución al error del canvas (Chart.js necesita getContext)
 beforeAll(() => {
   HTMLCanvasElement.prototype.getContext = vi.fn(() => ({
     fillRect: vi.fn(),

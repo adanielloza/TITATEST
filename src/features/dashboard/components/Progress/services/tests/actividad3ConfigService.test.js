@@ -1,9 +1,13 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import {
-  fetchParametrosActividad2,
-  __setCachedParametros,
-} from "../actividad2ConfigService";
 import { ref, get } from "firebase/database";
+import {
+  fetchParametrosActividad3,
+  __setCachedParametrosActividad3,
+} from "../../services/actividad3ConfigService";
+
+vi.mock("../../../../../../services/firebase.js", () => ({
+  rtdb: "mocked-rtdb",
+}));
 
 vi.mock("firebase/database", async (importOriginal) => {
   const actual = await importOriginal();
@@ -16,20 +20,22 @@ vi.mock("firebase/database", async (importOriginal) => {
 });
 
 const MOCK_CONFIG = {
-  parametrosEsperadosPorGrid: {
-    grid3: { aperturas: 4, tiempo: 55 },
+  parametrosEsperadosPorNivel: {
+    medio: {
+      respuestasCorrectas: 6,
+      tiempoPorPregunta: 8,
+    },
   },
   penalizaciones: {
-    demasiadasAperturas: 10,
     muyLento: 20,
-    muyPocasCorrectas: 30,
+    muyPocasCorrectas: 35,
   },
 };
 
-describe("fetchParametrosActividad2", () => {
+describe("fetchParametrosActividad3", () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    __setCachedParametros(null);
+    __setCachedParametrosActividad3(null);
   });
 
   it("retorna los parámetros desde Firebase si existen", async () => {
@@ -38,9 +44,12 @@ describe("fetchParametrosActividad2", () => {
       val: () => MOCK_CONFIG,
     });
 
-    const result = await fetchParametrosActividad2();
+    const result = await fetchParametrosActividad3();
 
-    expect(ref).toHaveBeenCalled();
+    expect(ref).toHaveBeenCalledWith(
+      "mocked-rtdb",
+      "parametros_actividades/actividad_3"
+    );
     expect(get).toHaveBeenCalled();
     expect(result).toEqual(MOCK_CONFIG);
   });
@@ -50,19 +59,21 @@ describe("fetchParametrosActividad2", () => {
       exists: () => false,
     });
 
-    const result = await fetchParametrosActividad2();
+    const result = await fetchParametrosActividad3();
 
-    expect(result).toHaveProperty("parametrosEsperadosPorGrid.grid3");
-    expect(result.parametrosEsperadosPorGrid.grid3.aperturas).toBe(5);
+    expect(result).toHaveProperty("parametrosEsperadosPorNivel.facil");
+    expect(result.parametrosEsperadosPorNivel.facil.respuestasCorrectas).toBe(
+      3
+    );
   });
 
   it("retorna parámetros por defecto si ocurre un error", async () => {
     get.mockRejectedValue(new Error("RTDB error"));
 
-    const result = await fetchParametrosActividad2();
+    const result = await fetchParametrosActividad3();
 
-    expect(result).toHaveProperty("parametrosEsperadosPorGrid.grid4");
-    expect(result.parametrosEsperadosPorGrid.grid4.tiempo).toBe(90);
+    expect(result).toHaveProperty("penalizaciones.muyLento");
+    expect(result.penalizaciones.muyLento).toBe(30);
   });
 
   it("usa caché si ya fue llamado antes", async () => {
@@ -71,11 +82,11 @@ describe("fetchParametrosActividad2", () => {
       val: () => MOCK_CONFIG,
     });
 
-    const first = await fetchParametrosActividad2();
+    const first = await fetchParametrosActividad3();
     expect(first).toEqual(MOCK_CONFIG);
 
     get.mockClear();
-    const second = await fetchParametrosActividad2();
+    const second = await fetchParametrosActividad3();
     expect(get).not.toHaveBeenCalled();
     expect(second).toEqual(MOCK_CONFIG);
   });
