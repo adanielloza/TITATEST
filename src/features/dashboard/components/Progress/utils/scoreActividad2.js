@@ -37,6 +37,15 @@ export const calcularPuntaje = async ({
     puntaje -= (exceso / expected.aperturas) * penalties.demasiadasAperturas;
   }
 
+  // 💡 BONUS por dificultad
+  const dificultadBonus = {
+    3: 1.0,
+    4: 1.1,
+    5: 1.25,
+  };
+
+  puntaje *= dificultadBonus[gridSize] || 1.0;
+
   return Math.max(0, Math.min(100, Math.round(puntaje)));
 };
 
@@ -70,6 +79,11 @@ export const generarObservaciones = async ({
 
   if (time_spent_seconds > expected.tiempo) {
     obs += "- Tardó más de lo esperado. Posible distracción o dificultad. ";
+  }
+
+  // 💬 Bonus cualitativo si hizo buen trabajo en dificultad media o alta
+  if (correctRatio >= 0.9 && gridSize >= 4) {
+    obs += "- Muy buen desempeño considerando la dificultad. ";
   }
 
   return obs.trim() || "- Buen desempeño.";
