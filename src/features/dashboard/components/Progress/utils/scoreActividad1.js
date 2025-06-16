@@ -4,6 +4,7 @@ const getNivelDesdeSettings = ({ cantidad_modelos }) => {
   if (cantidad_modelos === 3 || cantidad_modelos === 5) return "facil";
   if (cantidad_modelos === 7) return "medio";
   if (cantidad_modelos === 10) return "dificil";
+  if (typeof cantidad_modelos === "string") return cantidad_modelos;
   return "facil";
 };
 

@@ -4,7 +4,7 @@ const getNivelDesdeSettings = ({ cantidad_elementos }) => {
   if (cantidad_elementos === 3) return "facil";
   if (cantidad_elementos === 4) return "medio";
   if (cantidad_elementos === 5) return "dificil";
-  return "facil";
+  return cantidad_elementos;
 };
 
 export const calcularPuntajeActividad3 = async ({

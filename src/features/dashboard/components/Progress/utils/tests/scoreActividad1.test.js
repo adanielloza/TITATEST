@@ -149,4 +149,118 @@ describe("generarObservacionesActividad1", () => {
 
     expect(result).toBe("- Buen desempeño.");
   });
+
+  it("usa 'facil' por defecto si cantidad_modelos no coincide con ningún nivel", async () => {
+    const result = await calcularPuntajeActividad1({
+      ...BASE_DATA,
+      game_settings: { cantidad_modelos: 1 },
+    });
+
+    expect(result).toBeGreaterThanOrEqual(0);
+    expect(result).toBeLessThanOrEqual(100);
+  });
+
+  it("usa 1 como fallback si preguntas.length es 0", async () => {
+    const result = await calcularPuntajeActividad1({
+      preguntas: [],
+      tiempos_por_target: [{ tiempo: 1 }],
+      game_settings: { cantidad_modelos: 1 },
+    });
+
+    expect(result).toBeLessThanOrEqual(100);
+  });
+
+  it("usa 1 como fallback si nivel no está en dificultadBonus", async () => {
+    const result = await calcularPuntajeActividad1({
+      preguntas: [{ desaciertos: 0, tiempo: 5 }],
+      tiempos_por_target: [{ tiempo: 12 }],
+      game_settings: { cantidad_modelos: 999 },
+    });
+
+    expect(result).toBeLessThanOrEqual(100);
+  });
+
+  it("retorna mensaje genérico cuando no hay observaciones negativas", async () => {
+    const result = await generarObservacionesActividad1({
+      preguntas: [
+        { desaciertos: 0, tiempo: 8 },
+        { desaciertos: 0, tiempo: 9 },
+        { desaciertos: 0, tiempo: 10 },
+      ],
+      tiempos_por_target: [{ tiempo: 11 }, { tiempo: 12 }, { tiempo: 10 }],
+      game_settings: { cantidad_modelos: 5 },
+    });
+
+    expect(result).toBe("- Buen desempeño.");
+  });
+
+  it("aplica fallback 1.0 si nivel no está en dificultadBonus", async () => {
+    const customConfig = {
+      ...MOCK_CONFIG,
+      parametrosEsperadosPorNivel: {
+        ...MOCK_CONFIG.parametrosEsperadosPorNivel,
+        extremo: {
+          respuestasCorrectas: 1,
+          tiempoDeObservacion: 5,
+          tiempoPorPregunta: 5,
+        },
+      },
+    };
+
+    fetchParametrosActividad1.mockResolvedValueOnce(customConfig);
+
+    const result = await calcularPuntajeActividad1({
+      preguntas: [{ desaciertos: 0, tiempo: 4 }],
+      tiempos_por_target: [{ tiempo: 6 }],
+      game_settings: { cantidad_modelos: "extremo" },
+    });
+
+    expect(result).toBeGreaterThanOrEqual(0);
+  });
+
+  it("usa 1 como totalPreguntas si preguntas.length es 0 en observaciones", async () => {
+    const customConfig = {
+      ...MOCK_CONFIG,
+      parametrosEsperadosPorNivel: {
+        facil: {
+          respuestasCorrectas: 0,
+          tiempoDeObservacion: 5,
+          tiempoPorPregunta: 10,
+        },
+      },
+    };
+    fetchParametrosActividad1.mockResolvedValueOnce(customConfig);
+
+    const result = await generarObservacionesActividad1({
+      preguntas: [],
+      tiempos_por_target: [{ tiempo: 10 }],
+      game_settings: { cantidad_modelos: 3 },
+    });
+
+    expect(result).toBe("- Buen desempeño.");
+  });
+
+  it("usa 1.0 como fallback si dificultadBonus no tiene el nivel", async () => {
+    const customConfig = {
+      ...MOCK_CONFIG,
+      parametrosEsperadosPorNivel: {
+        ...MOCK_CONFIG.parametrosEsperadosPorNivel,
+        custom: {
+          respuestasCorrectas: 1,
+          tiempoDeObservacion: 1,
+          tiempoPorPregunta: 1,
+        },
+      },
+    };
+
+    fetchParametrosActividad1.mockResolvedValueOnce(customConfig);
+
+    const result = await calcularPuntajeActividad1({
+      preguntas: [{ desaciertos: 0, tiempo: 1 }],
+      tiempos_por_target: [{ tiempo: 2 }],
+      game_settings: { cantidad_modelos: "custom" },
+    });
+
+    expect(result).toBeGreaterThanOrEqual(0);
+  });
 });

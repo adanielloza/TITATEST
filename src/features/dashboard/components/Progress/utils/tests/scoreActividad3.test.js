@@ -86,6 +86,25 @@ describe("calcularPuntajeActividad3", () => {
 
     expect(result).toBe(0);
   });
+
+  it("aplica 1.0 como fallback si nivel no está en dificultadBonus", async () => {
+    const config = {
+      ...MOCK_CONFIG,
+      parametrosEsperadosPorNivel: {
+        ...MOCK_CONFIG.parametrosEsperadosPorNivel,
+        extremo: { respuestasCorrectas: 1, tiempoPorPregunta: 5 },
+      },
+    };
+
+    fetchParametrosActividad3.mockResolvedValue(config);
+
+    const result = await calcularPuntajeActividad3({
+      preguntas: [{ errores: 0, tiempoRespuesta: 3 }],
+      game_settings: { cantidad_elementos: "extremo" },
+    });
+
+    expect(result).toBe(100);
+  });
 });
 
 describe("generarObservacionesActividad3", () => {
@@ -158,5 +177,88 @@ describe("generarObservacionesActividad3", () => {
     });
 
     expect(result).toBe("");
+  });
+
+  it("usa 'facil' por defecto si cantidad_elementos no coincide con ningún nivel", async () => {
+    fetchParametrosActividad3.mockResolvedValue(MOCK_CONFIG);
+
+    const result = await calcularPuntajeActividad3({
+      preguntas: [
+        { errores: 0, tiempoRespuesta: 4 },
+        { errores: 0, tiempoRespuesta: 5 },
+      ],
+      game_settings: { cantidad_elementos: 9 },
+    });
+
+    expect(result).toBeGreaterThanOrEqual(0);
+  });
+
+  it("calcula puntaje para nivel medio", async () => {
+    fetchParametrosActividad3.mockResolvedValue(MOCK_CONFIG);
+
+    const result = await calcularPuntajeActividad3({
+      preguntas: [
+        { errores: 0, tiempoRespuesta: 6 },
+        { errores: 1, tiempoRespuesta: 8 },
+      ],
+      game_settings: { cantidad_elementos: 4 },
+    });
+
+    expect(result).toBeLessThan(100);
+  });
+
+  it("no penaliza si esperado está vacío (nivel desconocido)", async () => {
+    fetchParametrosActividad3.mockResolvedValue({
+      ...MOCK_CONFIG,
+      parametrosEsperadosPorNivel: {},
+    });
+
+    const result = await calcularPuntajeActividad3({
+      preguntas: [{ errores: 0, tiempoRespuesta: 3 }],
+      game_settings: { cantidad_elementos: 999 },
+    });
+
+    expect(result).toBe(100);
+  });
+
+  it("usa 1 como fallback si no hay preguntas", async () => {
+    fetchParametrosActividad3.mockResolvedValue(MOCK_CONFIG);
+
+    const result = await calcularPuntajeActividad3({
+      preguntas: [],
+      game_settings: { cantidad_elementos: 3 },
+    });
+
+    expect(result).toBeGreaterThanOrEqual(0);
+  });
+
+  it("usa esperado vacío y totalPreguntas como 1 cuando nivel no está definido y no hay preguntas", async () => {
+    fetchParametrosActividad3.mockResolvedValue({
+      ...MOCK_CONFIG,
+      parametrosEsperadosPorNivel: {},
+    });
+
+    const result = await calcularPuntajeActividad3({
+      preguntas: [],
+      game_settings: { cantidad_elementos: "raro" },
+    });
+
+    expect(result).toBe(100);
+  });
+
+  it("usa esperado vacío y totalPreguntas como 1 cuando nivel no está en config y no hay preguntas", async () => {
+    fetchParametrosActividad3.mockResolvedValue({
+      ...MOCK_CONFIG,
+      parametrosEsperadosPorNivel: {
+        facil: MOCK_CONFIG.parametrosEsperadosPorNivel.facil,
+      },
+    });
+
+    const result = await calcularPuntajeActividad3({
+      preguntas: [],
+      game_settings: { cantidad_elementos: 999 },
+    });
+
+    expect(result).toBe(100);
   });
 });

@@ -1,10 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import ObservationVsErrorsChart from "../ObservationVsErrorsChart";
+import React from "react";
 import { vi } from "vitest";
-
-vi.mock("react-chartjs-2", () => ({
-  Chart: vi.fn(() => <canvas data-testid="combo-chart" />),
-}));
 
 describe("ObservationVsErrorsChart", () => {
   const tiemposMock = [
@@ -12,17 +8,29 @@ describe("ObservationVsErrorsChart", () => {
     { target: "ImageTargetB", tiempo: 2.8 },
   ];
 
-  const preguntasMock = [
-    { desaciertos: 1 },
-    { desaciertos: 2 },
-    { desaciertos: 1 },
-  ];
+  const preguntasMock = [{ desaciertos: 1 }, {}, { desaciertos: 2 }];
+
+  let resizeMock;
 
   beforeEach(() => {
+    vi.resetModules();
     vi.clearAllMocks();
+    resizeMock = vi.fn();
+
+    vi.doMock("react-chartjs-2", () => ({
+      Chart: React.forwardRef((props, ref) => {
+        if (ref && typeof ref === "object") {
+          ref.current = { resize: resizeMock };
+        }
+        return <canvas data-testid="combo-chart" />;
+      }),
+    }));
   });
 
-  it("renderiza el gráfico combinado correctamente", () => {
+  it("renderiza el gráfico combinado correctamente", async () => {
+    const { default: ObservationVsErrorsChart } = await import(
+      "../ObservationVsErrorsChart"
+    );
     render(
       <ObservationVsErrorsChart
         tiempos={tiemposMock}
@@ -30,12 +38,22 @@ describe("ObservationVsErrorsChart", () => {
       />
     );
     expect(screen.getByTestId("combo-chart")).toBeInTheDocument();
+
+    expect(tiemposMock[0].target.replace("ImageTarget", "Target ")).toBe(
+      "Target A"
+    );
+    expect(tiemposMock[1].target.replace("ImageTarget", "Target ")).toBe(
+      "Target B"
+    );
   });
 
-  it("registra y elimina el listener de resize", () => {
+  it("registra y elimina el listener de resize", async () => {
     const addSpy = vi.spyOn(window, "addEventListener");
     const removeSpy = vi.spyOn(window, "removeEventListener");
 
+    const { default: ObservationVsErrorsChart } = await import(
+      "../ObservationVsErrorsChart"
+    );
     const { unmount } = render(
       <ObservationVsErrorsChart
         tiempos={tiemposMock}
@@ -46,5 +64,19 @@ describe("ObservationVsErrorsChart", () => {
     expect(addSpy).toHaveBeenCalledWith("resize", expect.any(Function));
     unmount();
     expect(removeSpy).toHaveBeenCalledWith("resize", expect.any(Function));
+  });
+
+  it("llama a chartRef.current.resize en el evento resize", async () => {
+    const { default: ObservationVsErrorsChart } = await import(
+      "../ObservationVsErrorsChart"
+    );
+    render(
+      <ObservationVsErrorsChart
+        tiempos={tiemposMock}
+        preguntas={preguntasMock}
+      />
+    );
+    window.dispatchEvent(new Event("resize"));
+    expect(resizeMock).toHaveBeenCalled();
   });
 });

@@ -221,4 +221,22 @@ describe("generarObservaciones", () => {
     expect(easy).toBeLessThan(100);
     expect(hard).toBeGreaterThan(easy);
   });
+
+  it("aplica 1.0 como fallback si gridSize no está en dificultadBonus", async () => {
+    fetchParametrosActividad2.mockResolvedValue({
+      ...MOCK_CONFIG,
+      parametrosEsperadosPorGrid: {
+        grid10: { aperturas: 10, tiempo: 100 },
+      },
+    });
+
+    const result = await calcularPuntaje({
+      correct_answers: 100,
+      image_opens: 1,
+      time_spent_seconds: 80,
+      gridSize: 10,
+    });
+
+    expect(result).toBeLessThanOrEqual(100);
+  });
 });
