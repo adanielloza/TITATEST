@@ -35,6 +35,13 @@ export const calcularPuntajeActividad3 = async ({
     puntaje -= (exceso / esperado.tiempoPorPregunta) * penalizaciones.muyLento;
   }
 
+  const dificultadBonus = {
+    facil: 1.0,
+    medio: 1.1,
+    dificil: 1.25,
+  };
+
+  puntaje *= dificultadBonus[nivel] || 1.0;
   return Math.max(0, Math.min(100, Math.round(puntaje)));
 };
 
@@ -61,6 +68,14 @@ export const generarObservacionesActividad3 = async ({
 
   if (tiempoProm > esperado.tiempoPorPregunta) {
     obs += "- Tiempo de respuesta alto. ";
+  }
+
+  if (
+    respuestasCorrectas >= esperado.respuestasCorrectas &&
+    tiempoProm <= esperado.tiempoPorPregunta &&
+    nivel === "dificil"
+  ) {
+    obs += "- Excelente desempeño en nivel difícil. ";
   }
 
   if (!obs) obs = "- Buen desempeño.";
