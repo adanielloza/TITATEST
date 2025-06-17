@@ -1,8 +1,9 @@
-import DataTable from "../../../components/DataTable/DataTable";
-import useUsers from "../hooks/useUsers";
-import Modal from "../../../components/Modal";
 import { useState } from "react";
+import DataTable from "../../../components/DataTable/DataTable";
+import Modal from "../../../components/Modal";
 import AddUser from "./AddUser";
+import EditUser from "./EditUser";
+import useUsers from "../hooks/useUsers";
 
 const columns = [
   { key: "id", label: "ID" },
@@ -12,6 +13,9 @@ const columns = [
 ];
 
 const UsersDataTable = () => {
+  const [userToEdit, setUserToEdit] = useState(null);
+  const [isEditOpen, setIsEditOpen] = useState(false);
+
   const {
     users,
     userToDelete,
@@ -22,29 +26,39 @@ const UsersDataTable = () => {
     fetchUsers,
   } = useUsers();
 
-  const handleDeleteClick = (row) => {
+  function handleDeleteClick(row, setUserToDelete, setIsModalOpen) {
     setUserToDelete(row);
     setIsModalOpen(true);
-  };
+  }
 
-  const handleEditClick = (row) => {
-    // implementar edición si se requiere
-  };
+  function handleEditClick(row, setUserToEdit, setIsEditOpen) {
+    setUserToEdit(row);
+    setIsEditOpen(true);
+  }
 
   return (
     <div>
       <AddUser onUserAdded={fetchUsers} />
+      <EditUser
+        user={userToEdit}
+        isOpen={isEditOpen}
+        onClose={() => setIsEditOpen(false)}
+        onUpdated={fetchUsers}
+      />
+      <br />
       <DataTable
         columns={columns}
         data={users}
-        onEdit={handleEditClick}
-        onDelete={handleDeleteClick}
+        onEdit={(row) => handleEditClick(row, setUserToEdit, setIsEditOpen)}
+        onDelete={(row) =>
+          handleDeleteClick(row, setUserToDelete, setIsModalOpen)
+        }
       />
       <Modal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         title="¿Eliminar usuario?"
-        subtitle={`Esta acción no se puede deshacer.`}
+        subtitle="Esta acción no se puede deshacer."
         onCancel={() => setIsModalOpen(false)}
         onConfirm={confirmDelete}
         cancelLabel="Cancelar"

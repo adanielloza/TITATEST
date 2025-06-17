@@ -59,6 +59,7 @@ const PatientForm = ({ onDataChange, initialData = {} }) => {
   return (
     <>
       <Input
+        name="nombre"
         label="*Nombre"
         value={nombre}
         onChange={(e) => setNombre(e.target.value)}
@@ -66,6 +67,7 @@ const PatientForm = ({ onDataChange, initialData = {} }) => {
         onlyLetters
       />
       <Input
+        name="apellido"
         label="*Apellido"
         value={apellido}
         onChange={(e) => setApellido(e.target.value)}
@@ -80,6 +82,7 @@ const PatientForm = ({ onDataChange, initialData = {} }) => {
         maxDate={today}
       />
       <Dropdown
+        name="sexo"
         label="*Sexo"
         value={sexo}
         onChange={(e) => setSexo(e.target.value)}
@@ -87,6 +90,7 @@ const PatientForm = ({ onDataChange, initialData = {} }) => {
         required
       />
       <Dropdown
+        name="tipoTDAH"
         label="*Tipo TDAH"
         value={tipoTDAH}
         onChange={(e) => setTipoTDAH(e.target.value)}
@@ -94,6 +98,7 @@ const PatientForm = ({ onDataChange, initialData = {} }) => {
         required
       />
       <Input
+        name="nombreTutor"
         label="Nombre del Tutor"
         value={nombreTutor}
         onChange={(e) => setNombreTutor(e.target.value)}
@@ -101,6 +106,7 @@ const PatientForm = ({ onDataChange, initialData = {} }) => {
         onlyLetters
       />
       <Input
+        name="telefonoTutor"
         label="Teléfono del Tutor"
         value={telefonoTutor}
         onChange={(e) => setTelefonoTutor(e.target.value)}
@@ -109,6 +115,7 @@ const PatientForm = ({ onDataChange, initialData = {} }) => {
         maxLength={10}
       />
       <Input
+        name="correoTutor"
         label="*Correo del Tutor"
         value={correoTutor}
         onChange={(e) => setCorreoTutor(e.target.value)}
@@ -116,6 +123,7 @@ const PatientForm = ({ onDataChange, initialData = {} }) => {
         type="email"
       />
       <TextArea
+        name="observaciones"
         label="Observaciones"
         value={observaciones}
         onChange={(e) => setObservaciones(e.target.value)}

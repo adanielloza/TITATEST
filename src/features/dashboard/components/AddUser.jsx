@@ -1,17 +1,19 @@
 import { useCallback, useState } from "react";
 import { Button, Modal, Input } from "../../../components";
 import UserForm from "./UserForm";
-import useSaveUser from "../hooks/useSaveUser";
+import useSaveUser from "../hooks/useUsers";
 import { sendOTPEmail } from "../services/emailService";
+import useToast from "../../../hooks/useToast";
 
 const generateOTP = () =>
-  Math.floor(100000 + Math.random() * 900000).toString(); // Ej: "486927"
+  Math.floor(100000 + Math.random() * 900000).toString();
 
 const AddUser = ({ onUserAdded }) => {
-  const [open, setOpen] = useState(false); // Modal principal
-  const [otpModalOpen, setOtpModalOpen] = useState(false); // Modal OTP
+  const [open, setOpen] = useState(false);
+  const [otpModalOpen, setOtpModalOpen] = useState(false);
   const [otpGenerated, setOtpGenerated] = useState("");
   const [otpInput, setOtpInput] = useState("");
+  const { notify } = useToast();
 
   const [formData, setFormData] = useState({});
   const [isFormValid, setIsFormValid] = useState(false);
@@ -32,12 +34,16 @@ const AddUser = ({ onUserAdded }) => {
   };
 
   const handleConfirmOTP = async () => {
-    if (otpInput === otpGenerated) {
+    const cleaned = otpInput
+      .trim()
+      .replace(/\s/g, "")
+      .replace(/\u200B/g, "");
+    if (cleaned === otpGenerated) {
       await saveUser(formData);
       onUserAdded?.();
       handleCancel();
     } else {
-      alert("❌ Código incorrecto. Inténtalo nuevamente.");
+      notify("error", "Código incorrecto. Inténtalo nuevamente.");
     }
   };
 
@@ -53,9 +59,9 @@ const AddUser = ({ onUserAdded }) => {
         icon="/icons/person.svg"
         onClick={() => setOpen(true)}
         variant="primary"
+        style={{ marginBottom: "1.5rem" }}
       />
 
-      {/* Modal formulario */}
       <Modal
         isOpen={open}
         onClose={handleCancel}
@@ -70,7 +76,6 @@ const AddUser = ({ onUserAdded }) => {
         </form>
       </Modal>
 
-      {/* Modal OTP */}
       <Modal
         isOpen={otpModalOpen}
         onClose={handleCancel}

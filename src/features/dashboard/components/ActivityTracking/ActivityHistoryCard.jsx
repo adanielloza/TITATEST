@@ -14,7 +14,7 @@ const ActivityHistoryCard = ({ activities = [], onSessionSelect }) => {
       onSessionSelect?.(firstSession);
     }
 
-    if (sessions.length === 0 && selectedId) {
+    if (sessions.length === 0) {
       setSelectedId(null);
       onSessionSelect?.(null);
     }

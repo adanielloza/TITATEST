@@ -16,7 +16,6 @@ export const calcularPuntaje = async ({
   const penalties = config.penalizaciones;
 
   if (!expected) {
-    console.warn(`No hay configuración para grid${gridSize}`);
     return 0;
   }
 
@@ -37,6 +36,14 @@ export const calcularPuntaje = async ({
     puntaje -= (exceso / expected.aperturas) * penalties.demasiadasAperturas;
   }
 
+  const dificultadBonus = {
+    3: 1.0,
+    4: 1.1,
+    5: 1.25,
+  };
+
+  puntaje *= dificultadBonus[gridSize] || 1.0;
+
   return Math.max(0, Math.min(100, Math.round(puntaje)));
 };
 
@@ -53,7 +60,6 @@ export const generarObservaciones = async ({
   const expected = config.parametrosEsperadosPorGrid[`grid${gridSize}`];
 
   if (!expected) {
-    console.warn(`No hay configuración para grid${gridSize}`);
     return "";
   }
 
@@ -70,6 +76,10 @@ export const generarObservaciones = async ({
 
   if (time_spent_seconds > expected.tiempo) {
     obs += "- Tardó más de lo esperado. Posible distracción o dificultad. ";
+  }
+
+  if (correctRatio >= 0.9 && gridSize >= 4) {
+    obs += "- Muy buen desempeño considerando la dificultad. ";
   }
 
   return obs.trim() || "- Buen desempeño.";

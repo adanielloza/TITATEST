@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
-import { collection, getDocs, query, where } from "firebase/firestore";
-import { db } from "../../../services/firebase";
-import { deleteUserByUid } from "../services/userService";
+import {
+  fetchUsersFromFirestore,
+  deleteUserByUid,
+  saveUserToFirestore,
+} from "../services/userService";
 import { useLoader } from "../../../contexts/LoaderContext";
 import useToast from "../../../hooks/useToast";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../../services/firebase";
 
-const useUsers = () => {
+const useUsers = ({ skipInitialLoad = false } = {}) => {
   const [users, setUsers] = useState([]);
   const [userToDelete, setUserToDelete] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -16,16 +20,7 @@ const useUsers = () => {
   const fetchUsers = async () => {
     showLoader();
     try {
-      const usersRef = collection(db, "users");
-      const q = query(usersRef, where("role", "==", "user"));
-      const snapshot = await getDocs(q);
-
-      const usersList = snapshot.docs.map((doc, index) => ({
-        id: index + 1,
-        uid: doc.id,
-        ...doc.data(),
-      }));
-
+      const usersList = await fetchUsersFromFirestore();
       setUsers(usersList);
     } catch (error) {
       console.error("Error al cargar usuarios:", error);
@@ -51,9 +46,33 @@ const useUsers = () => {
     }
   };
 
+  const saveUser = async ({ name, lastName, email, password }) => {
+    showLoader();
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const uid = userCredential.user.uid;
+
+      await saveUserToFirestore({ uid, name, lastName, email });
+
+      notify("success", "Usuario creado correctamente");
+      await fetchUsers();
+    } catch (error) {
+      console.error("Error al crear usuario:", error);
+      notify("error", "No se pudo registrar el usuario");
+    } finally {
+      hideLoader();
+    }
+  };
+
   useEffect(() => {
-    fetchUsers();
-  }, []);
+    if (!skipInitialLoad) {
+      fetchUsers();
+    }
+  }, [skipInitialLoad]);
 
   return {
     users,
@@ -63,6 +82,7 @@ const useUsers = () => {
     setIsModalOpen,
     confirmDelete,
     fetchUsers,
+    saveUser,
   };
 };
 

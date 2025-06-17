@@ -31,7 +31,7 @@ describe("Dropdown component", () => {
   it("muestra las opciones correctamente", () => {
     render(<Dropdown name="categoria" options={basicOptions} />);
     const options = screen.getAllByRole("option");
-    expect(options).toHaveLength(3); // incluye el placeholder
+    expect(options).toHaveLength(3);
     expect(options[1]).toHaveTextContent("Opción 1");
     expect(options[2]).toHaveTextContent("Opción 2");
   });
