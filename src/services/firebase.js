@@ -12,14 +12,12 @@ import {
 } from "firebase/database";
 
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-  databaseURL: import.meta.env.VITE_FIREBASE_DATABASE_URL,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID,
-  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
+  apiKey:            "AIzaSyA35S9oxx1FxV4VvX9-voq2-py4PwUECYQ",
+  authDomain:        "tita-d7bd8.firebaseapp.com",
+  projectId:         "tita-d7bd8",
+  storageBucket:     "tita-d7bd8.appspot.com",       // note the “.appspot.com”
+  messagingSenderId: "1066591329316",
+  appId:             "1:1066591329316:web:980c03f6f85700d1f5ccb1",
 };
 
 const app = initializeApp(firebaseConfig);
