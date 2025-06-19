@@ -3,6 +3,12 @@ import "react-calendar/dist/Calendar.css";
 import "../styles/DateInput.css";
 import useDatePicker from "../hooks/useDatePicker";
 
+export const formatDate = (date) => {
+  if (!date) return "";
+  const options = { year: "numeric", month: "2-digit", day: "2-digit" };
+  return date.toLocaleDateString("en-GB", options);
+};
+
 function DateInput({
   label,
   value,
@@ -25,12 +31,6 @@ function DateInput({
       onChange(date);
     }
     handleCalendarToggle();
-  };
-
-  const formatDate = (date) => {
-    if (!date) return "";
-    const options = { year: "numeric", month: "2-digit", day: "2-digit" };
-    return date.toLocaleDateString("en-GB", options);
   };
 
   return (

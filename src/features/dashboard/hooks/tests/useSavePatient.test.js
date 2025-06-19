@@ -89,7 +89,6 @@ describe("useSavePatient", () => {
       nombreTutor: "ana perez",
       telefonoTutor: "0999999999",
       correoTutor: "EMAIL@EXAMPLE.COM",
-      // sin observaciones
     };
 
     capitalize.mockImplementation((str) => str.toUpperCase());

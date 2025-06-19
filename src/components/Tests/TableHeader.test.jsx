@@ -28,7 +28,7 @@ describe("TableHeader component", () => {
   };
 
   it("renderiza las columnas y la columna 'Acciones'", () => {
-    setup();
+    setup({ showActions: true });
     mockColumns.forEach((col) => {
       expect(screen.getByText(col.label)).toBeInTheDocument();
     });

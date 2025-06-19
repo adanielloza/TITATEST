@@ -1,4 +1,3 @@
-// ResponseTimeLineChart.jsx
 import {
   Chart as ChartJS,
   LineElement,

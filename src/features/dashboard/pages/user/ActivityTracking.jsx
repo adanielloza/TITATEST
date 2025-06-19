@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   PageHeader,
   PatientInfoCard,
@@ -18,13 +18,6 @@ const ActivityTracking = () => {
 
   const { patientInfo, activityHistory } =
     usePatientActivityData(selectedPatientId);
-
-  useEffect(() => {
-    if (selectedPatientId) {
-      console.log("🧍 Datos personales:", patientInfo);
-      console.log("📋 Actividades:", activityHistory);
-    }
-  }, [selectedPatientId, patientInfo, activityHistory]);
 
   return (
     <div className="activity-tracking">
