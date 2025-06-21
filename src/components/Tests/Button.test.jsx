@@ -65,4 +65,11 @@ describe("Button component", () => {
       fireEvent.click(getButton());
     }).not.toThrow();
   });
+
+  it("no ejecuta onClick si no se proporciona", () => {
+    render(<Button label="Sin handler" />);
+    expect(() => {
+      fireEvent.click(getButton());
+    }).not.toThrow();
+  });
 });
