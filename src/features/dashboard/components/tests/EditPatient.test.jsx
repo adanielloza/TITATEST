@@ -115,7 +115,6 @@ describe("EditPatient", () => {
               nombreTutor: "ana",
               telefonoTutor: "0999999999",
               correoTutor: "ANA@GMAIL.COM",
-              // sin observaciones
             },
           });
         }, [onDataChange]);

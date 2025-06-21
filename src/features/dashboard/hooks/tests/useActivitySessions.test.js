@@ -36,4 +36,41 @@ describe("useActivitySessions", () => {
     const result = useActivitySessions(actividades);
     expect(result).toEqual([{ id: 1, fecha: "2024-06-07", actividadId: "a2" }]);
   });
+
+  it("ordena correctamente cuando hay fechas inválidas", () => {
+    const actividades = [
+      {
+        actividadId: "a1",
+        sesiones: [
+          { id: 1, fecha: "fecha-invalida" },
+          { id: 2, fecha: "2024-06-08" },
+        ],
+      },
+    ];
+    const result = useActivitySessions(actividades);
+    expect(result).toEqual([
+      { id: 1, fecha: "fecha-invalida", actividadId: "a1" },
+      { id: 2, fecha: "2024-06-08", actividadId: "a1" },
+    ]);
+  });
+
+  it("cubre la rama cuando aDate.getTime() es NaN", () => {
+    const actividades = [
+      {
+        actividadId: "a1",
+        sesiones: [{ id: 1, fecha: "2024-06-10" }],
+      },
+      {
+        actividadId: "a2",
+        sesiones: [{ id: 2, fecha: "invalid-date" }],
+      },
+    ];
+
+    const result = useActivitySessions(actividades);
+
+    expect(result).toEqual([
+      { id: 2, fecha: "invalid-date", actividadId: "a2" },
+      { id: 1, fecha: "2024-06-10", actividadId: "a1" },
+    ]);
+  });
 });

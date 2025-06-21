@@ -18,6 +18,12 @@ describe("useSidebarLinks", () => {
         label: "Usuarios",
         icon: "person.svg",
       },
+      {
+        path: "/logout",
+        label: "Cerrar sesión",
+        icon: "logout.svg",
+        isLogout: true,
+      },
     ]);
   });
 
@@ -38,6 +44,12 @@ describe("useSidebarLinks", () => {
         label: "Seguimiento Actividades",
         icon: "activity.svg",
       },
+      {
+        path: "/logout",
+        label: "Cerrar sesión",
+        icon: "logout.svg",
+        isLogout: true,
+      },
     ]);
   });
 
@@ -55,6 +67,12 @@ describe("useSidebarLinks", () => {
         path: "/dashboard/activity-management",
         label: "Seguimiento Actividades",
         icon: "activity.svg",
+      },
+      {
+        path: "/logout",
+        label: "Cerrar sesión",
+        icon: "logout.svg",
+        isLogout: true,
       },
     ]);
   });

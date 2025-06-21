@@ -63,6 +63,7 @@ describe("TableBody component", () => {
             data={mockData}
             columns={mockColumns}
             onEdit={handleEdit}
+            showActions={true}
           />
         </tbody>
       </table>
@@ -82,6 +83,7 @@ describe("TableBody component", () => {
             data={mockData}
             columns={mockColumns}
             onDelete={handleDelete}
+            showActions={true}
           />
         </tbody>
       </table>
@@ -90,5 +92,34 @@ describe("TableBody component", () => {
     const deleteIcon = screen.getByAltText("Eliminar");
     fireEvent.click(deleteIcon);
     expect(handleDelete).toHaveBeenCalledWith(mockData[0]);
+  });
+
+  it("muestra correctamente el colSpan sin acciones cuando no hay datos", () => {
+    render(
+      <table>
+        <tbody>
+          <TableBody data={[]} columns={mockColumns} showActions={false} />
+        </tbody>
+      </table>
+    );
+
+    const cell = screen.getByText("No hay datos para mostrar");
+    expect(cell).toHaveAttribute("colspan", mockColumns.length.toString());
+  });
+
+  it("muestra correctamente el colSpan con acciones cuando no hay datos", () => {
+    render(
+      <table>
+        <tbody>
+          <TableBody data={[]} columns={mockColumns} showActions={true} />
+        </tbody>
+      </table>
+    );
+
+    const cell = screen.getByText("No hay datos para mostrar");
+    expect(cell).toHaveAttribute(
+      "colspan",
+      (mockColumns.length + 1).toString()
+    );
   });
 });

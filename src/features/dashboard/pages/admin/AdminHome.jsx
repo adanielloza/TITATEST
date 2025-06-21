@@ -8,7 +8,6 @@ function AdminHome() {
         title="Inicio de Admin"
         subtitle="Bienvenido al panel de administración"
       />
-      <span>HOLA</span>
     </div>
   );
 }

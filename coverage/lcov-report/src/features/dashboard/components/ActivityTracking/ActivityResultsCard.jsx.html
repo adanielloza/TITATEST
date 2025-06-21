@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">23.07% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>6/26</span>
+                <span class='fraction'>26/26</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>7/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">23.07% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>6/26</span>
+                <span class='fraction'>26/26</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -105,34 +105,34 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import ActivityOneResults from "../Results/ActivityOneResults";
@@ -140,35 +140,35 @@ import ActivityTwoResults from "../Results/ActivityTwoResults";
 import ActivityThreeResults from "../Results/ActivityThreeResults";
 import "../../styles/ActivityResultsCard.css";
 &nbsp;
-const ActivityResultsCard = <span class="fstat-no" title="function not covered" >({ selectedSession }) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  if (!selectedSession) {</span>
-<span class="cstat-no" title="statement not covered" >    return (</span>
-<span class="cstat-no" title="statement not covered" >      &lt;div className="activity-results"&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;h3 className="activity-results__title"&gt;</span>
+const ActivityResultsCard = ({ selectedSession }) =&gt; {
+  if (!selectedSession) {
+    return (
+      &lt;div className="activity-results"&gt;
+        &lt;h3 className="activity-results__title"&gt;
           📈 Resultados de Actividades
-<span class="cstat-no" title="statement not covered" >        &lt;/h3&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;p className="activity-results__empty"&gt;</span>
+        &lt;/h3&gt;
+        &lt;p className="activity-results__empty"&gt;
           Aquí se mostrarán los resultados detallados cuando hayan sesiones en
           el historial de actividades.
-<span class="cstat-no" title="statement not covered" >        &lt;/p&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;/div&gt;</span>
+        &lt;/p&gt;
+      &lt;/div&gt;
     );
-<span class="cstat-no" title="statement not covered" >  }</span>
+  }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  const actividadTipo =</span>
-<span class="cstat-no" title="statement not covered" >    selectedSession.actividadTipo || selectedSession.actividadId;</span>
+  const actividadTipo =
+    selectedSession.actividadTipo || selectedSession.actividadId;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  switch (actividadTipo) {</span>
-<span class="cstat-no" title="statement not covered" >    case "actividad_1":</span>
-<span class="cstat-no" title="statement not covered" >      return &lt;ActivityOneResults data={selectedSession} /&gt;;</span>
+  switch (actividadTipo) {
+    case "actividad_1":
+      return &lt;ActivityOneResults data={selectedSession} /&gt;;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    case "actividad_2":</span>
-<span class="cstat-no" title="statement not covered" >      return &lt;ActivityTwoResults data={selectedSession} /&gt;;</span>
+    case "actividad_2":
+      return &lt;ActivityTwoResults data={selectedSession} /&gt;;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    case "actividad_3":</span>
-<span class="cstat-no" title="statement not covered" >      return &lt;ActivityThreeResults data={selectedSession} /&gt;;</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
-<span class="cstat-no" title="statement not covered" >};</span>
+    case "actividad_3":
+      return &lt;ActivityThreeResults data={selectedSession} /&gt;;
+  }
+};
 &nbsp;
 export default ActivityResultsCard;
 &nbsp;</pre></td></tr></table></pre>
@@ -178,7 +178,7 @@ export default ActivityResultsCard;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-06-09T20:52:44.679Z
+                at 2025-06-21T20:18:03.368Z
             </div>
         <script src="../../../../../prettify.js"></script>
         <script>

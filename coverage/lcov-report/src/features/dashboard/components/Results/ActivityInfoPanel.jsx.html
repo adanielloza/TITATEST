@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">15% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>3/20</span>
+                <span class='fraction'>20/20</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">15% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>3/20</span>
+                <span class='fraction'>20/20</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -88,51 +88,51 @@
 <a name='L23'></a><a href='#L23'>23</a>
 <a name='L24'></a><a href='#L24'>24</a>
 <a name='L25'></a><a href='#L25'>25</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const InfoItem = <span class="fstat-no" title="function not covered" >({ icon, label, value }) =&gt; (</span>
-<span class="cstat-no" title="statement not covered" >  &lt;div className="activity-info__item"&gt;</span>
-<span class="cstat-no" title="statement not covered" >    &lt;div className="activity-info__label"&gt;</span>
-<span class="cstat-no" title="statement not covered" >      {icon} {label}</span>
-<span class="cstat-no" title="statement not covered" >    &lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >    &lt;div className="activity-info__value"&gt;{value}&lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >  &lt;/div&gt;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const InfoItem = ({ icon, label, value }) =&gt; (
+  &lt;div className="activity-info__item"&gt;
+    &lt;div className="activity-info__label"&gt;
+      {icon} {label}
+    &lt;/div&gt;
+    &lt;div className="activity-info__value"&gt;{value}&lt;/div&gt;
+  &lt;/div&gt;
 );
 &nbsp;
-const ActivityInfoPanel = <span class="fstat-no" title="function not covered" >({</span>
-<span class="cstat-no" title="statement not covered" >  title = "Información de la Actividad",</span>
-<span class="cstat-no" title="statement not covered" >  items = [],</span>
-<span class="cstat-no" title="statement not covered" >}) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  return (</span>
-<span class="cstat-no" title="statement not covered" >    &lt;div className="activity-info"&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;h4 className="activity-info__title"&gt;📄 {title}&lt;/h4&gt;</span>
-<span class="cstat-no" title="statement not covered" >      {items.map(({ icon, label, value }, idx) =&gt; (</span>
-<span class="cstat-no" title="statement not covered" >        &lt;InfoItem key={idx} icon={icon} label={label} value={value} /&gt;</span>
-<span class="cstat-no" title="statement not covered" >      ))}</span>
-<span class="cstat-no" title="statement not covered" >    &lt;/div&gt;</span>
+const ActivityInfoPanel = ({
+  title = "Información de la Actividad",
+  items = [],
+}) =&gt; {
+  return (
+    &lt;div className="activity-info"&gt;
+      &lt;h4 className="activity-info__title"&gt;📄 {title}&lt;/h4&gt;
+      {items.map(({ icon, label, value }, idx) =&gt; (
+        &lt;InfoItem key={idx} icon={icon} label={label} value={value} /&gt;
+      ))}
+    &lt;/div&gt;
   );
-<span class="cstat-no" title="statement not covered" >};</span>
+};
 &nbsp;
 export default ActivityInfoPanel;
 &nbsp;</pre></td></tr></table></pre>
@@ -142,7 +142,7 @@ export default ActivityInfoPanel;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-06-09T20:52:44.679Z
+                at 2025-06-21T20:18:03.368Z
             </div>
         <script src="../../../../../prettify.js"></script>
         <script>

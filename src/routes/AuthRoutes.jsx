@@ -1,5 +1,5 @@
 import { Navigate } from "react-router-dom";
-import LoginPage from "../features/auth/LoginPage";
+import LoginPage from "../features/auth/pages/LoginPage";
 
 export default function AuthRoutes() {
   const userData = JSON.parse(localStorage.getItem("user") || "{}");

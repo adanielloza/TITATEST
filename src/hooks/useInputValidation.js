@@ -4,7 +4,7 @@ function useInputValidation({ onlyNumbers, onlyLetters, onChange }) {
 
     if (onlyNumbers && !/^\d*$/.test(value)) return;
 
-    if (onlyLetters && !/^[a-zA-Z\s]*$/.test(value)) return;
+    if (onlyLetters && !/^[\p{L}\s]*$/u.test(value)) return;
 
     onChange(e);
   };

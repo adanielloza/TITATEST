@@ -25,5 +25,13 @@ export function useSidebarLinks() {
     },
   ];
 
-  return role === "admin" ? adminLinks : userLinks;
+  const logoutLink = {
+    path: "/logout",
+    label: "Cerrar sesión",
+    icon: "logout.svg",
+    isLogout: true,
+  };
+
+  const links = role === "admin" ? adminLinks : userLinks;
+  return [...links, logoutLink];
 }

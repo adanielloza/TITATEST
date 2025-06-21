@@ -37,3 +37,7 @@ export const fetchParametrosActividad3 = async () => {
 
   return cachedParametrosActividad3;
 };
+
+export const __setCachedParametrosActividad3 = (val) => {
+  cachedParametrosActividad3 = val;
+};

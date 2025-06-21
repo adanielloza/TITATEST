@@ -4,14 +4,18 @@ import Button from "../../../components/Button";
 export default function LoginForm({ data, errorMsg, onChange, onSubmit }) {
   return (
     <form onSubmit={onSubmit} className="space-y-6">
-      {errorMsg && <div className="text-red-600 text-sm">{errorMsg}</div>}
+      {errorMsg && (
+        <div className="bg-red-100 text-red-700 px-4 py-2 rounded-md text-sm font-medium">
+          {errorMsg}
+        </div>
+      )}
 
       <div>
         <label
           htmlFor="email"
           className="block text-sm font-medium text-gray-700 mb-2"
         >
-          Email address
+          Correo electrónico
         </label>
         <input
           id="email"
@@ -19,7 +23,7 @@ export default function LoginForm({ data, errorMsg, onChange, onSubmit }) {
           type="email"
           value={data.email}
           onChange={onChange}
-          placeholder="you@example.com"
+          placeholder="tucorreo@ejemplo.com"
           className="w-full rounded-lg border border-gray-200 px-4 py-3 
                      focus:outline-none focus:ring-2 focus:ring-blue-300"
         />
@@ -30,7 +34,7 @@ export default function LoginForm({ data, errorMsg, onChange, onSubmit }) {
           htmlFor="password"
           className="block text-sm font-medium text-gray-700 mb-2"
         >
-          Password
+          Contraseña
         </label>
         <input
           id="password"
@@ -44,21 +48,14 @@ export default function LoginForm({ data, errorMsg, onChange, onSubmit }) {
         />
       </div>
 
-      <div className="text-right">
-        <Link
-          to="/forgot-password"
-          className="text-sm text-blue-600 hover:underline"
-        >
-          Forgot password?
-        </Link>
+      <div className="flex justify-end">
+        <Button
+          type="submit"
+          variant="primary"
+          label="Iniciar sesión"
+          className="w-full sm:w-[320px] py-3 text-lg"
+        />
       </div>
-
-      <Button
-        type="submit"
-        variant="primary"
-        label="Sign in"
-        className="w-[320px] mx-auto block py-3 text-lg"
-      />
     </form>
   );
 }

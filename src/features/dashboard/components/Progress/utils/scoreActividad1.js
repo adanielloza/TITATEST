@@ -4,6 +4,7 @@ const getNivelDesdeSettings = ({ cantidad_modelos }) => {
   if (cantidad_modelos === 3 || cantidad_modelos === 5) return "facil";
   if (cantidad_modelos === 7) return "medio";
   if (cantidad_modelos === 10) return "dificil";
+  if (typeof cantidad_modelos === "string") return cantidad_modelos;
   return "facil";
 };
 
@@ -44,6 +45,13 @@ export const calcularPuntajeActividad1 = async ({
     puntaje -= penalizaciones.pocaObservacion;
   }
 
+  const dificultadBonus = {
+    facil: 1.0,
+    medio: 1.1,
+    dificil: 1.25,
+  };
+
+  puntaje *= dificultadBonus[nivel] || 1.0;
   return Math.max(0, Math.min(100, Math.round(puntaje)));
 };
 
@@ -80,6 +88,15 @@ export const generarObservacionesActividad1 = async ({
 
   if (tiempoPromedioPorTarget < esperado.tiempoDeObservacion) {
     obs += "- Tiempo de observación bajo. ";
+  }
+
+  if (
+    respuestasCorrectas >= esperado.respuestasCorrectas &&
+    tiempoPromedioPorPregunta <= esperado.tiempoPorPregunta &&
+    tiempoPromedioPorTarget >= esperado.tiempoDeObservacion &&
+    nivel === "dificil"
+  ) {
+    obs += "- Excelente desempeño en nivel difícil. ";
   }
 
   if (!obs) obs = "- Buen desempeño.";

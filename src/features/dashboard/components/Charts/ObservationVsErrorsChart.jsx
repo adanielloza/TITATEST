@@ -38,7 +38,7 @@ const ObservationVsErrorsChart = ({ tiempos, preguntas }) => {
         label: "Tiempo observación (s)",
         data: tiempos.map((t) => t.tiempo.toFixed(2)),
         backgroundColor: "#00A8FF",
-        order: 1, // detrás
+        order: 1,
       },
       {
         type: "line",
@@ -50,7 +50,7 @@ const ObservationVsErrorsChart = ({ tiempos, preguntas }) => {
         fill: false,
         pointRadius: 5,
         yAxisID: "y2",
-        order: 0, // delante
+        order: 0,
       },
     ],
   };
