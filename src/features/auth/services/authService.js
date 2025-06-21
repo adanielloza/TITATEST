@@ -1,5 +1,3 @@
-// src/features/auth/services/authService.js
-
 import { signInWithEmailAndPassword, signOut, getAuth } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../../services/firebase";
@@ -7,9 +5,6 @@ import { sendOTPEmail } from "../../dashboard/services/emailService.js";
 
 const auth = getAuth();
 
-/**
- * Step 1: Sign in with email/password, then send OTP.
- */
 export async function login(email, password) {
   try {
     const { user } = await signInWithEmailAndPassword(auth, email, password);
@@ -26,11 +21,9 @@ export async function login(email, password) {
       return { error: true, errorMessage: "Rol inválido." };
     }
 
-    // Generate and send OTP
     const otp = Math.floor(100000 + Math.random() * 900000);
     await sendOTPEmail(user.email, otp);
 
-    // Store for later confirmation
     localStorage.setItem("otp", otp.toString());
     localStorage.setItem(
       "pendingUser",
@@ -43,9 +36,6 @@ export async function login(email, password) {
   }
 }
 
-/**
- * Step 2: Confirm the OTP entered by the user.
- */
 export async function confirmOTP(inputCode) {
   const storedCode = localStorage.getItem("otp");
   const pending = localStorage.getItem("pendingUser");
@@ -57,7 +47,6 @@ export async function confirmOTP(inputCode) {
     return { error: true, errorMessage: "Código inválido." };
   }
 
-  // OTP correct → finalize login
   localStorage.removeItem("otp");
   localStorage.setItem("user", pending);
   localStorage.removeItem("pendingUser");
@@ -65,9 +54,6 @@ export async function confirmOTP(inputCode) {
   return { user: JSON.parse(pending) };
 }
 
-/**
- * Step 3: Re-send a fresh OTP to the pending user.
- */
 export async function resendOTP() {
   const pending = localStorage.getItem("pendingUser");
   if (!pending) {
@@ -75,15 +61,11 @@ export async function resendOTP() {
   }
   const { email } = JSON.parse(pending);
 
-  // Generate new code, send, and overwrite stored OTP
   const otp = Math.floor(100000 + Math.random() * 900000);
   await sendOTPEmail(email, otp);
   localStorage.setItem("otp", otp.toString());
 }
 
-/**
- * Optional: log out (clears session).
- */
 export async function logout() {
   await signOut(auth);
   localStorage.removeItem("user");

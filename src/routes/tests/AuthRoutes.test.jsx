@@ -2,11 +2,13 @@ import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import AuthRoutes from "../AuthRoutes";
 
-vi.mock("../../features/auth/LoginPage", () => ({
+vi.mock("../../features/auth/pages/LoginPage.jsx", () => ({
+  __esModule: true,
   default: () => <div>Página de Login</div>,
 }));
 
 vi.mock("../DashboardRoutes", () => ({
+  __esModule: true,
   default: () => <div>Dashboard</div>,
 }));
 

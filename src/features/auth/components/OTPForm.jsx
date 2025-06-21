@@ -1,6 +1,3 @@
-// src/features/auth/components/OTPForm.jsx
-
-import React from "react";
 import Button from "../../../components/Button";
 
 export default function OTPForm({
@@ -11,13 +8,16 @@ export default function OTPForm({
   onSubmit,
   onResend,
 }) {
-  // Format mm:ss
   const minutes = String(Math.floor(timeLeft / 60)).padStart(2, "0");
   const seconds = String(timeLeft % 60).padStart(2, "0");
 
   return (
     <form onSubmit={onSubmit} className="space-y-6">
-      {errorMsg && <div className="text-red-600 text-sm">{errorMsg}</div>}
+      {errorMsg && (
+        <div className="bg-red-100 text-red-700 px-4 py-2 rounded-md text-sm font-medium">
+          {errorMsg}
+        </div>
+      )}
 
       <div>
         <label
@@ -36,12 +36,14 @@ export default function OTPForm({
         />
       </div>
 
-      <Button
-        type="submit"
-        variant="primary"
-        label="Verificar Código"
-        className="w-[320px] mx-auto block py-3 text-lg"
-      />
+      <div className="flex justify-end">
+        <Button
+          type="submit"
+          variant="primary"
+          label="Verificar Código"
+          className="w-full sm:w-[320px] py-3 text-lg"
+        />
+      </div>
 
       <div className="text-center mt-4">
         {timeLeft > 0 ? (
