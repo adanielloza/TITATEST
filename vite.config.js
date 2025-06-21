@@ -15,6 +15,7 @@ export default defineConfig({
         "eslint.config.js",
         "vite.config.js",
         "src/main.jsx",
+        "dist",
       ],
     },
   },
