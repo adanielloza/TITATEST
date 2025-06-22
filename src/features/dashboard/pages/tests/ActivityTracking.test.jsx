@@ -1,5 +1,11 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import ActivityTracking from "../user/ActivityTracking";
+import * as exportUtils from "../../utils/exportUtils";
+
+vi.spyOn(exportUtils, "exportAllActivitiesToPDF").mockImplementation(() => {});
+vi.spyOn(exportUtils, "exportAllActivitiesToExcel").mockImplementation(
+  () => {}
+);
 
 vi.mock("../../components", () => ({
   PageHeader: ({ title, subtitle }) => (
@@ -79,5 +85,22 @@ describe("ActivityTracking", () => {
     expect(screen.getByTestId("activity-results")).toHaveTextContent(
       "Sesión: sesion_1"
     );
+  });
+
+  it("exporta a PDF y Excel al hacer clic en los botones", () => {
+    render(<ActivityTracking />);
+
+    // Seleccionamos un paciente
+    fireEvent.change(screen.getByRole("combobox"), {
+      target: { value: "id_1" },
+    });
+
+    // Click en exportar a PDF
+    fireEvent.click(screen.getByText("Exportar a PDF"));
+    expect(exportUtils.exportAllActivitiesToPDF).toHaveBeenCalledTimes(1);
+
+    // Click en exportar a Excel
+    fireEvent.click(screen.getByText("Exportar a Excel"));
+    expect(exportUtils.exportAllActivitiesToExcel).toHaveBeenCalledTimes(1);
   });
 });
