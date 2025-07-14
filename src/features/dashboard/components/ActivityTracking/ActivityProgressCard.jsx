@@ -11,9 +11,9 @@ const ActivityProgressCard = ({ activityHistory }) => {
 
   const dropdownOptions = [
     { label: "Progreso General", value: "general" },
-    { label: "Progreso Actividad 1", value: "actividad_1" },
-    { label: "Progreso Actividad 2", value: "actividad_2" },
-    { label: "Progreso Actividad 3", value: "actividad_3" },
+    { label: "Progreso Desafío de Observación", value: "actividad_1" },
+    { label: "Progreso Desafío de Patrones", value: "actividad_2" },
+    { label: "Progreso Desafío de Memoria", value: "actividad_3" },
   ];
 
   const renderProgressComponent = () => {
