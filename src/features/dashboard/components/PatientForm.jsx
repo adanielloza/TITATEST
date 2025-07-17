@@ -99,7 +99,7 @@ const PatientForm = ({ onDataChange, initialData = {} }) => {
       />
       <Input
         name="nombreTutor"
-        label="Nombre del Tutor"
+        label="*Nombre del Tutor"
         value={nombreTutor}
         onChange={(e) => setNombreTutor(e.target.value)}
         required
@@ -116,7 +116,7 @@ const PatientForm = ({ onDataChange, initialData = {} }) => {
       />
       <Input
         name="correoTutor"
-        label="*Correo del Tutor"
+        label="Correo del Tutor"
         value={correoTutor}
         onChange={(e) => setCorreoTutor(e.target.value)}
         required

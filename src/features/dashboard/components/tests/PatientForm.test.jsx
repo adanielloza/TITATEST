@@ -62,9 +62,9 @@ describe("PatientForm", () => {
 
     const nombreInput = screen.getByLabelText("*Nombre");
     const apellidoInput = screen.getByLabelText("*Apellido");
-    const nombreTutorInput = screen.getByLabelText("Nombre del Tutor");
+    const nombreTutorInput = screen.getByLabelText("*Nombre del Tutor");
     const telefonoInput = screen.getByLabelText("Teléfono del Tutor");
-    const correoInput = screen.getByLabelText("*Correo del Tutor");
+    const correoInput = screen.getByLabelText("Correo del Tutor");
     const observacionesInput = screen.getByLabelText("Observaciones");
 
     const sexoSelect = screen.getByLabelText("*Sexo");

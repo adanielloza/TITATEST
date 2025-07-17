@@ -21,7 +21,11 @@ const TableBody = ({ data, columns, onEdit, onDelete, showActions }) => {
             col.key === "observaciones" ? "datatable__td--scrollable" : ""
           }`}
         >
-          {row[col.key]}
+          {row[col.key] !== null &&
+          row[col.key] !== undefined &&
+          row[col.key] !== ""
+            ? row[col.key]
+            : "-"}
         </td>
       ))}
       {showActions && (
